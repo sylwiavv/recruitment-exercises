@@ -1,0 +1,17 @@
+{
+  "name": "typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "compile-ts": "tsc --watch",
+    "scss": "node-sass js/microblog -o assets/css",
+    "scss-watch": "node-sass --watch src/js/assets/scss/**.scss -o src/js/assets/css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "node-sass": "^7.0.1"
+  }
+}
