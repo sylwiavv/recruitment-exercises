@@ -1,0 +1,30 @@
+$font-size-300: 0.75rem; /* 12px */
+$font-size-400: 1rem;    /* 16px, base */
+$font-size-500: 1.25rem; /* 20px */
+$font-size-600: 1.5rem;  /* 24px */
+$font-size-700: 1.75rem; /* 28px */
+$font-size-800: 2rem;    /* 32px */
+$font-size-900: 2.25rem; /* 36px */
+
+$main-font-family: 'Montserrat', sans-serif;
+
+$main-font-color: #363f4c;
+$secondary-font-color-gray: #7d838a;
+
+$third-font-color: #eef0f2;
+
+$main-bg-color: #f1f0f1;
+$main-article-bg-color:  #fdfdfd;
+
+$box-shadow: 1px 4px 28px 3px rgba(214, 220, 222, 0.63);
+
+@mixin gradientBackground() {
+  background: rgb(238,244,251);
+  background: linear-gradient(180deg, rgb(203, 203, 203) 16%, rgba(250,249,249,1) 50%);
+
+  background: -webkit-linear-gradient( rgb(203, 203, 203), rgb(253, 238, 238));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  background-image: linear-gradient(to right top, #f6f6f6, #f5f5f5, #f3f3f4, #f2f2f2, #f1f0f1);
+}

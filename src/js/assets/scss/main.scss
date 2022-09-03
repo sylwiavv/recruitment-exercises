@@ -1,0 +1,48 @@
+@import "base/reset";
+@import "base/_variables.scss";
+
+@import "pages/index";
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: $main-font-family;
+  position: relative;
+  line-height: 1.5rem;
+  background-color: $main-bg-color;
+
+  &.active:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+
+    background-color: #30302f;
+    opacity: .5;
+  }
+}
+
+textarea {
+  font-family: $main-font-family;
+}
+
+h1, h2, h3 {
+  margin-bottom: 1.5rem;
+}
+
+h4, h5, h6, p {
+  margin-bottom: 1rem;
+}
+
+.wrapper {
+  margin: .5rem 0;
+}
+
+.center-align {
+  display: flex;
+  align-items: center;
+}

@@ -1,0 +1,54 @@
+.microblog {
+  padding: 1rem;
+}
+
+.articles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1rem;
+
+  .article {
+    background-color: $main-article-bg-color;
+    box-shadow: $box-shadow;
+    border-radius: .4rem;
+    padding: 24px;
+
+   &__title_wrapper {
+     position: relative;
+     display: flex;
+     align-items: end;
+     flex-direction: column;
+     margin-bottom: 2rem;
+
+     &:after {
+       content: attr(data-whatever);
+       font-size: 180px;
+       height: 149px;
+       display: flex;
+       font-weight: 900;
+       align-content: center;
+       align-items: center;
+       margin-right: auto;
+
+       background: -webkit-linear-gradient(#eee, #333);
+       -webkit-background-clip: text;
+       -webkit-text-fill-color: transparent;
+
+       @include gradientBackground();
+     }
+   }
+
+    &__title {
+      color: $main-font-color;
+      line-height: 1.8rem;
+      margin-bottom: 0;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+  }
+
+    &__content{
+      color: $secondary-font-color-gray;
+    }
+  }
+}
