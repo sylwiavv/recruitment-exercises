@@ -1,0 +1,23 @@
+{
+  "name": "typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "compile-ts": "tsc --watch",
+    "scss": "node-sass js/microblog -o assets/css",
+    "scss-watch": "node-sass --watch js/assets/scss/**.scss -o src/js/assets/css",
+    "prettier:fix": "prettier --write \"../**/*.ts*(x)\"",
+    "lint": "eslint \"src/**/*.js*(x)\" --max-warnings=0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "node-sass": "^7.0.1",
+    "eslint": "^8.16.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.6.2"
+  }
+}

@@ -98,10 +98,10 @@ button {
 }
 
 .up:before {
-    background-image: url('js/microblog/assets/icons/thumb-up.svg');
+    background-image: url('microblog/assets/icons/thumb-up.svg');
 }
 
 .down:before {
-    background-image: url('js/microblog/assets/icons/thumb-down.svg');
+    background-image: url('microblog/assets/icons/thumb-down.svg');
 }
 
