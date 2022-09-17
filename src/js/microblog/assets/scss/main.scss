@@ -1,7 +1,8 @@
 @import "base/reset";
-@import "base/_variables.scss";
+@import "base/variables";
 
 @import "pages/index";
+@import "components/buttons";
 
 html {
   font-size: 16px;

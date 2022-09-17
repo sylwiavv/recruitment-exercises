@@ -1,6 +1,6 @@
-import { renderArticles } from './helpers/render-articles.js';
-import { allArticles } from './articles.js';
-import { Article } from './types/types.js';
+import { renderArticles } from './helpers/render-articles';
+import { allArticles } from './articles';
+import { Article } from './types/types';
 
 const getFormArticle: HTMLFormElement = document.querySelector('#form-wrapper');
 const body: HTMLBodyElement = document.querySelector('body');
@@ -91,4 +91,29 @@ body.addEventListener('click', (e: Event) => {
       updateLikes(childLikes, likesNumberElement, currentArticleIndex);
     }
   }
+
+  //remove
+  // if ((e.target as HTMLButtonElement).matches('.remove')) {
+  //   let parent = (e.target as HTMLElement).parentNode;
+  //   let currentArticleIndex: number = parseInt((parent.parentNode.parentNode as HTMLElement).getAttribute('for'));
+  //   console.log(parent);
+  // }
 });
+
+const allArticlesDom = document.querySelector('.articles');
+
+allArticlesDom.addEventListener('click', (e) => {
+  if ((e.target as HTMLButtonElement).matches('.remove')) {
+    let parent = (e.target as HTMLElement).parentNode.parentNode;
+    let currentArticleIndex: number = parseInt((parent as HTMLElement).getAttribute('for'));
+    console.log(allArticles);
+    allArticles.splice(currentArticleIndex, 1);
+    console.log(allArticles);
+
+    getAllArticlesWrapper.innerHTML = '';
+
+    renderArticles(updateLikes);
+  }
+});
+
+const removeButton: HTMLButtonElement = document.querySelector('.remove');

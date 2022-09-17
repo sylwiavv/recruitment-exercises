@@ -1,0 +1,109 @@
+.button-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// icon buttons
+.icon-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  cursor: pointer;
+
+  &:before {
+    content: '';
+    background-size: 22px;
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+  }
+
+  &.thumb-up:before {
+    background-image: url('../icons/thumb-up_icon.svg');
+  }
+
+  &.thumb-down:before {
+    background-image: url('../icons/thumb-down_icon.svg');
+  }
+
+  &.remove {
+    background-image: url('../icons/garbage_icon.svg');
+  }
+}
+
+
+/// TODO
+.microblog form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+}
+
+.microblog #form-wrapper {
+  display: none;
+}
+
+.microblog #form-wrapper.active {
+  border-radius: 4px;
+  display: block;
+  background-color: white;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  padding: 16px;
+  width: 50%;
+  z-index: 100;
+}
+
+.microblog form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+}
+
+.microblog form input,
+.microblog form textarea {
+  margin-top: 8px;
+}
+
+.microblog form label#text {
+  margin-bottom: 30px;
+}
+
+label:not(:last-child) {
+  margin-bottom: 16px;
+}
+
+input {
+  height: 32px;
+}
+
+button {
+  border: none;
+  border-radius: 4px;
+  background-color: #095d29;
+  color: white;
+  outline: none;
+  padding: 4px 24px;
+  height: 40px;
+  max-width: max-content;
+}
+
+.close-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: transparent;
+  color: red;
+  cursor: pointer;
+}

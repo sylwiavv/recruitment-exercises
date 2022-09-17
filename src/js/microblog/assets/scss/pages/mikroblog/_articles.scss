@@ -6,8 +6,11 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 1rem;
+  max-width: 1440px;
 
   .article {
+    display: flex;
+    flex-direction: column;
     background-color: $main-article-bg-color;
     box-shadow: $box-shadow;
     border-radius: .4rem;
@@ -47,8 +50,31 @@
       left: 0;
   }
 
-    &__content{
+    &__content {
+      display: flex;
+      flex-grow: 1;
       color: $secondary-font-color-gray;
+
+      padding-bottom: 24px;
+      border-bottom: 1px solid #f4f4f5;
+    }
+
+    .box-likes {
+      display: flex;
+      justify-content: space-between;
+
+      > p {
+        margin: 0;
+      }
+
+      .likes-count {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 8px;
+        width: 32px;
+        height: 24px;
+      }
     }
   }
 }

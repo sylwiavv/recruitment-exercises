@@ -1,14 +1,13 @@
 const getArticlesContainer = document.querySelector('.articles');
 const numberOfPosts = document.querySelector('#number-of-post');
 
-import { allArticles } from '../articles.js';
+import { allArticles } from '../articles';
 let showNumber = '';
-let zero = '0';
 
 export const renderArticles = (
   updateLikesCallback: (childLikes: number, likesNumberElement: Element, currentArticleIndex: number, articleNumber: number) => void
 ) => {
-  let articleNumber = null;
+  let articleNumber: null | number = null;
 
   const fragment = document.createDocumentFragment();
 
@@ -16,8 +15,7 @@ export const renderArticles = (
     articleNumber++;
 
     if (articleNumber <= 9) {
-      console.log(articleNumber);
-      showNumber = `${zero}${articleNumber}`;
+      showNumber = `0${articleNumber}`;
     } else {
       showNumber = `${articleNumber}`;
     }
@@ -35,16 +33,17 @@ export const renderArticles = (
            <div class="box-likes wrapper">
            <p>Do you like this article? </p>
                <div class="button-wrapper">
-                   <button class="thumb up" id="button-like"></button>
+                   <button class="icon-button thumb-up" id="button-like"></button>
                    <span class="likes-count" id="people-likes">${likes}</span>
                </div>
                <div class="button-wrapper">
-                   <button class="thumb down" id="button-dislikes"></button>
+                   <button class="icon-button thumb-down" id="button-dislikes"></button>
                    <span class="likes-count" id="people-dislikes">${dislikes}</span>
                </div>
            </div>
             <div class="wrapper">
-              <button class="remove">Remove article</button>
+              <span>Remove article</span>
+              <button class="icon-button remove"></button>
            </div>
         `;
     fragment.appendChild(createArticle);
