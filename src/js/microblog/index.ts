@@ -1,6 +1,7 @@
 import { renderArticles } from './helpers/render-articles';
-import { allArticles } from './articles';
+import { allArticles } from './data/articles';
 import { Article } from './types/types';
+import { closeModal } from "./helpers/modal";
 
 const getFormArticle: HTMLFormElement = document.querySelector('#form-wrapper');
 const body: HTMLBodyElement = document.querySelector('body');
@@ -15,7 +16,8 @@ let contentValue = '';
 
 const errorMessage: string = 'You need to fill all fields';
 
-const createErrorMessage = document.createElement('p');
+export const createErrorMessage = document.createElement('p');
+createErrorMessage.classList.add('error-message');
 const getAllArticlesWrapper: HTMLElement = document.querySelector('.articles');
 
 const addNewArticle = (article: Article) => {
@@ -23,43 +25,9 @@ const addNewArticle = (article: Article) => {
   allArticles.push(article);
 };
 
-body.addEventListener('click', (e: Event) => {
-  if ((e.target as HTMLButtonElement).matches('#create-article')) {
-    getFormArticle.classList.toggle('active');
-
-    if (getFormArticle.classList.contains('active')) {
-      body.classList.add('active');
-    } else {
-      body.classList.remove('active');
-    }
-  } else if ((e.target as Element).matches('body') || (e.target as Element).matches('.close-button')) {
-    closeModal();
-  }
-});
-
-getFormArticle.addEventListener('input', (e: Event) => {
-  if ((e.target as HTMLInputElement).matches('#article-title')) {
-    titleValue = (e.target as HTMLTextAreaElement).value;
-  }
-
-  if ((e.target as HTMLInputElement).matches('#article-content')) {
-    contentValue = (e.target as HTMLTextAreaElement).value;
-  }
-
-  if (createErrorMessage) {
-    createErrorMessage.remove();
-  }
-});
-
-const closeModal = () => {
-  getFormArticle.classList.remove('active');
-  body.classList.remove('active');
-
-  getTitleInput.value = '';
-  getContentInput.value = '';
-};
-
 addArticle.addEventListener('click', (e: Event) => {
+  createErrorMessage.remove();
+
   e.preventDefault();
 
   if (getTitleInput.value && getContentInput.value) {
@@ -91,13 +59,6 @@ body.addEventListener('click', (e: Event) => {
       updateLikes(childLikes, likesNumberElement, currentArticleIndex);
     }
   }
-
-  //remove
-  // if ((e.target as HTMLButtonElement).matches('.remove')) {
-  //   let parent = (e.target as HTMLElement).parentNode;
-  //   let currentArticleIndex: number = parseInt((parent.parentNode.parentNode as HTMLElement).getAttribute('for'));
-  //   console.log(parent);
-  // }
 });
 
 const allArticlesDom = document.querySelector('.articles');
@@ -106,9 +67,7 @@ allArticlesDom.addEventListener('click', (e) => {
   if ((e.target as HTMLButtonElement).matches('.remove')) {
     let parent = (e.target as HTMLElement).parentNode.parentNode;
     let currentArticleIndex: number = parseInt((parent as HTMLElement).getAttribute('for'));
-    console.log(allArticles);
     allArticles.splice(currentArticleIndex, 1);
-    console.log(allArticles);
 
     getAllArticlesWrapper.innerHTML = '';
 

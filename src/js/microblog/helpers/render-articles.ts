@@ -1,7 +1,7 @@
 const getArticlesContainer = document.querySelector('.articles');
 const numberOfPosts = document.querySelector('#number-of-post');
 
-import { allArticles } from '../articles';
+import { allArticles } from '../data/articles';
 let showNumber = '';
 
 export const renderArticles = (
