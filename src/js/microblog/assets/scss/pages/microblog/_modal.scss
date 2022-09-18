@@ -1,0 +1,31 @@
+.microblog form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+}
+
+.modal {
+  display: none;
+  margin: auto;
+  width: calc(100% - 16px);
+
+  &.active {
+    border-radius: 4px;
+    display: block;
+    background-color: white;
+    position: absolute;
+    top: 8%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    padding: 16px;
+    z-index: 100;
+  }
+
+  @media ($desktop) {
+    width: 50%;
+  }
+
+  .error-message {
+    color: $error-color;
+  }
+}

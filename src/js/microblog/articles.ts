@@ -2,7 +2,7 @@ import { Article } from './types/types';
 
 export const allArticles: Article[] = [
   {
-    title: 'hello',
+    title: 'The surprising ancient roots of The Lord of the Rings',
     content:
       "The series takes its cue from an appendix Tolkien wrote for the final instalment of his epic, slenderly outlining the history of Middle-earth's Second Age. By necessity – legal as well as creative (Amazon doesn't own the rights to posthumously published materials in which Tolkien goes into greater depth on the Second Age) – the show's writers have had to alter and embellish, compressing time frames, inventing new characters and tinkering with the storylines of some canonical creations.",
     likes: 2,

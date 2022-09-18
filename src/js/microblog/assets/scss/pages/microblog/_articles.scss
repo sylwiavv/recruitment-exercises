@@ -1,12 +1,20 @@
 .microblog {
   padding: 1rem;
+  max-width: 1440px;
+  margin: 0 auto;
 }
 
 .articles {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
   grid-gap: 1rem;
-  max-width: 1440px;
+
+  @media ($desktop) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media ($mobile) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 
   .article {
     display: flex;
@@ -61,16 +69,27 @@
 
     .box-likes {
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
+      cursor: pointer;
 
-      > p {
-        margin: 0;
+      .wrapper {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+
+        p {
+          margin: 0 $indent_s 0;
+        }
+
+        @media ($mobile) {
+          flex-direction: row;
+        }
       }
 
       .likes-count {
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: flex-end;
         padding: 0 8px;
         width: 32px;
         height: 24px;

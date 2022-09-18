@@ -12,20 +12,24 @@
 </head>
 <body>
 <div class="microblog">
-    <div id="form-wrapper">
+    <div id="form-wrapper" class="modal">
         <div class="wrapper">
             <h1>Create your post</h1>
         </div>
         <form id="form-for-create-article">
-            <label for="article-title">Add title: <input id="article-title" placeholder="Click add title"/></label>
-            <label for="article-content">Add content: <textarea id="article-content"></textarea></label>
-            <button id="add-article">Add post</button>
+            <label for="article-title">Add title: <input id="article-title" placeholder="Click to add title"/></label>
+            <label for="article-content">Add content: <textarea id="article-content" placeholder="Click to add content"></textarea></label>
+            <button id="add-article" class="add">Add post</button>
         </form>
-        <button class="close-button">x</button>
+        <button class="close-button icon-button"></button>
     </div>
-    <h1>My micro blog</h1>
-    <p>I have<span id="number-of-post"></span>posts</p>
-    <button class="add" id="create-article">Create post</button>
+    <div class="wrapper heading">
+        <h1>My micro blog</h1>
+    </div>
+    <div class="wrapper create-post">
+        <button class="add" id="create-article">Create post</button>
+        <p>I have <span id="number-of-post"></span>posts</p>
+    </div>
     <div class="articles"></div>
 </div>
 <script src="bundle.js"></script>

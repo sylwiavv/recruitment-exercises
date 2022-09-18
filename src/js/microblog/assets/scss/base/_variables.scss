@@ -16,7 +16,26 @@ $third-font-color: #eef0f2;
 $main-bg-color: #f1f0f1;
 $main-article-bg-color:  #fdfdfd;
 
+$error-color: #ee5151;
+
+$border-color: #b9b9ba;
+$border-color_hover: #656574;
+
+$button-color_add: #363F4C;
+
+$button-height: 40px;
+
 $box-shadow: 1px 4px 28px 3px rgba(214, 220, 222, 0.63);
+
+$indent_xs: 4px;
+$indent_s: 8px;
+$indent_base: 16px;
+$indent_l: 24px;
+$indent_xl: 32px;
+
+$mobile: "(max-width: 375px)";
+$tablet: "(min-width: 768px) and (max-width: 1023px)";
+$desktop: "(min-width: 1024px)";
 
 @mixin gradientBackground() {
   background: rgb(238,244,251);

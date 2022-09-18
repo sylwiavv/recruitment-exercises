@@ -1,3 +1,20 @@
+button {
+  border: none;
+  border-radius: 4px;
+  outline: none;
+  padding: 4px 24px;
+  height: $button-height;
+  max-width: max-content;
+
+  &.add {
+    text-transform: uppercase;
+    font-weight: 600;
+    background-color: #363F4C;
+    color: white;
+    letter-spacing: .5px;
+  }
+}
+
 .button-wrapper {
   display: flex;
   align-items: center;
@@ -28,6 +45,10 @@
     margin: auto;
   }
 
+  &:hover {
+    transition: background-image, .4s;
+  }
+
   &.thumb-up:before {
     background-image: url('../icons/thumb-up_icon.svg');
   }
@@ -38,72 +59,38 @@
 
   &.remove {
     background-image: url('../icons/garbage_icon.svg');
+    background-position: right;
+    margin-left: auto;
+    position: relative;
+    transition: .2s;
+    height: 22px;
+
+    &:hover {
+      background-image: url('../icons/garbage_icon-hover.svg');
+
+      &:after {
+        content: attr(data-text);
+        color: $main-font-color;
+        font-size: 14px;
+        text-align: end;
+        position: absolute;
+        bottom: 28px;
+        right: -4px;
+        width: 200px;
+      }
+    }
   }
-}
 
+  &.close-button {
+    background-image: url('../icons/close_icon.svg');
+    position: absolute;
+    right: 8px;
+    background-color: transparent;
+    cursor: pointer;
+    top: 16px;
 
-/// TODO
-.microblog form {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 40px;
-}
-
-.microblog #form-wrapper {
-  display: none;
-}
-
-.microblog #form-wrapper.active {
-  border-radius: 4px;
-  display: block;
-  background-color: white;
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, 0);
-  padding: 16px;
-  width: 50%;
-  z-index: 100;
-}
-
-.microblog form label {
-  display: flex;
-  flex-direction: column;
-  font-size: 16px;
-}
-
-.microblog form input,
-.microblog form textarea {
-  margin-top: 8px;
-}
-
-.microblog form label#text {
-  margin-bottom: 30px;
-}
-
-label:not(:last-child) {
-  margin-bottom: 16px;
-}
-
-input {
-  height: 32px;
-}
-
-button {
-  border: none;
-  border-radius: 4px;
-  background-color: #095d29;
-  color: white;
-  outline: none;
-  padding: 4px 24px;
-  height: 40px;
-  max-width: max-content;
-}
-
-.close-button {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  background-color: transparent;
-  color: red;
-  cursor: pointer;
+    &:hover {
+      background-image: url('../icons/close_icon-hover.svg');
+    }
+  }
 }

@@ -26,12 +26,16 @@ export const renderArticles = (
     createArticle.setAttribute('for', id);
 
     createArticle.innerHTML = `
+            <div class="wrapper">
+              <button data-text="Remove article" class="icon-button remove"></button>
+           </div>
             <div class="article__title_wrapper" data-whatever="${showNumber}">
                <h2 class="article__title">${title}</h2>
             </div>
            <p class="article__content">${content}</p>
            <div class="box-likes wrapper">
            <p>Do you like this article? </p>
+             <div class="wrapper">
                <div class="button-wrapper">
                    <button class="icon-button thumb-up" id="button-like"></button>
                    <span class="likes-count" id="people-likes">${likes}</span>
@@ -40,10 +44,7 @@ export const renderArticles = (
                    <button class="icon-button thumb-down" id="button-dislikes"></button>
                    <span class="likes-count" id="people-dislikes">${dislikes}</span>
                </div>
-           </div>
-            <div class="wrapper">
-              <span>Remove article</span>
-              <button class="icon-button remove"></button>
+             </div>
            </div>
         `;
     fragment.appendChild(createArticle);

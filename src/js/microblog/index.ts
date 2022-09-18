@@ -115,5 +115,3 @@ allArticlesDom.addEventListener('click', (e) => {
     renderArticles(updateLikes);
   }
 });
-
-const removeButton: HTMLButtonElement = document.querySelector('.remove');

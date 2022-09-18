@@ -3,6 +3,8 @@
 
 @import "pages/index";
 @import "components/buttons";
+@import "components/inputs";
+@import "components/labels";
 
 html {
   font-size: 16px;
@@ -13,6 +15,10 @@ body {
   position: relative;
   line-height: 1.5rem;
   background-color: $main-bg-color;
+
+  &.active {
+    overflow-y: hidden;
+  }
 
   &.active:after {
     content: '';
@@ -27,8 +33,12 @@ body {
   }
 }
 
-textarea {
+* {
   font-family: $main-font-family;
+}
+
+textarea {
+  min-height: 124px;
 }
 
 h1, h2, h3 {
@@ -39,11 +49,11 @@ h4, h5, h6, p {
   margin-bottom: 1rem;
 }
 
-.wrapper {
-  margin: .5rem 0;
-}
-
 .center-align {
   display: flex;
   align-items: center;
+}
+
+button {
+  cursor: pointer;
 }

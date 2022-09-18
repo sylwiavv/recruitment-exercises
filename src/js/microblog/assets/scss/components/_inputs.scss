@@ -1,0 +1,29 @@
+input {
+  height: 40px;
+  margin-bottom: 8px;
+  display: flex;
+  align-self: flex-start;
+  text-align: start;
+  min-width: max-content;
+  width: 100%;
+}
+
+textarea, input {
+  border: 1px solid $border-color;
+  border-radius: 4px;
+  transition: border, 0.2s;
+  cursor: pointer;
+  padding: 4px 8px;
+  margin-top: 8px;
+
+  &:focus,
+  &:hover {
+    outline: none;
+    border: 1px solid $border-color_hover ;
+  }
+
+  &::placeholder {
+    text-align: start;
+    font-size: 14px;
+  }
+}

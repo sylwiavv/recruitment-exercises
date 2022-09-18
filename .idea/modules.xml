@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../autocomplete_js/.idea/autocomplete_js.iml" filepath="$PROJECT_DIR$/../autocomplete_js/.idea/autocomplete_js.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/recruitment-exercises.iml" filepath="$PROJECT_DIR$/.idea/recruitment-exercises.iml" />
     </modules>
   </component>
