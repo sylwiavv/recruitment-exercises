@@ -33,6 +33,16 @@ body {
   }
 }
 
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: $indent_xl * 2 $indent_base;
+
+  @media ($largeDesktop) {
+    padding: $indent_xl * 2 0;
+  }
+}
+
 * {
   font-family: $main-font-family;
 }
