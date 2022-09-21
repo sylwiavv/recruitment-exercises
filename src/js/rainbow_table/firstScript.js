@@ -7,8 +7,8 @@ const trimWords = words.map( word => word.trim());
 let text = "";
 
 //helpers
-const escapeRegExp = (string) =>  string.replace(/(\.|\?|-|—|,|\(|\)|!|"|;|:|'|«|»|\/)/g, ''); // $& means the whole matched string
-
+const escapeRegExp = (string) =>  string.replace(/(\.|\?|-|—|,|\(|\)|\*|!|"|;|:|'|«|»|\/)/g, ''); // $& means the whole matched string
+//ogarnac slowoo wwww-www
 const afterReg = trimWords.map( t =>  escapeRegExp(t));
 const notEmptyWords = afterReg.filter(word => word !== '');
 
@@ -22,3 +22,5 @@ fs.writeFile('./data/word_list.txt', text, function (err) {
     if (err) throw err;
     console.log('File is created successfully.');
 });
+
+
