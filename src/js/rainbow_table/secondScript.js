@@ -1,26 +1,17 @@
-const events = require('events');
-const fs = require('fs');
-const readline = require('readline');
-const md5 = require("md5");
-(async function processLineByLine() {
-    const rainbowTableWords = fs.createWriteStream('./data/rainbow_word_list.txt');
-    const wordList = fs.createReadStream('./data/word_list.txt');
+const fs = require("fs");
+const entryFile = process.argv[2];
+const entryHash = process.argv[3];
 
-    try {
-        const rl = readline.createInterface({
-            input: wordList,
-            output: rainbowTableWords,
-            crlfDelay: Infinity
-        });
+const rainbowTableWords = fs.createWriteStream('./dataOutput/result.txt');
+let file = fs.readFileSync(`./dataOutput/${entryFile}`, "utf8");
+let arr = file.split(/\r?\n/);
 
-        const wordsWithHash = rl.on('line', (word) => {
-            const hash = md5(`${word}`);
-            rainbowTableWords.write(`${word}  ${hash} \n`)
-
-        });
-
-        await events.once(rl, 'close');
-    } catch (err) {
-        console.error(err);
+arr.forEach((line) => {
+    if (line.includes(`${entryHash}`)){
+        rainbowTableWords.write(`Mr. Wylon's password:\n${line}`);
+        console.log('Result file is created successfully.');
     }
-})();
+});
+
+// script
+// node secondScript.js rainbow_word_list.txt c8e095e2a26f8540afabb36dcdaee3b1
