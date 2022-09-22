@@ -34,6 +34,8 @@
   },
   "dependencies": {
     "copy-webpack-plugin": "^11.0.0",
+    "js-md5": "^0.7.3",
+    "md5": "^2.3.0",
     "svg-url-loader": "^8.0.0"
   }
 }
