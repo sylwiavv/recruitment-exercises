@@ -2,7 +2,7 @@ const path = require('path'),
 CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-    entry: './firstScript.js',
+    entry: './index.js',
     module: {
         rules: [
             {

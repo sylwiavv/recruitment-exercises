@@ -2,7 +2,7 @@
   "name": "typescript",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": ".index.js",
   "scripts": {
     "compile-ts": "node_modules/.bin/tsc --watch",
     "scss": "node_modules/.bin/node-sass js/microblog -o microblog/assets/css",

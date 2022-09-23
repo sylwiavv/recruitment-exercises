@@ -3,3 +3,13 @@
 @import "microblog/wrappers";
 
 @import "searchbox/search-box";
+
+.page:not(:last-child) {
+  margin-bottom: 2 * $indent_xl;
+}
+
+.konami_code {
+  border-radius: 4px;
+  background-color: #c6d9ea;
+  padding: $indent_l $indent_base;
+}
