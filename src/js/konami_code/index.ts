@@ -19,9 +19,17 @@ const fetchData = (items: number = 5) => {
         .catch(err => console.log('Request Failed', err));
 }
 
+let timeoutIdInout: ReturnType<typeof setTimeout>;
+let timeoutIdList: ReturnType<typeof setTimeout>;
 
 input.addEventListener('input', (e) => {
     let inputValue: string = (e.target as HTMLTextAreaElement).value;
+    console.log(timeoutIdInout);
+    if ( timeoutIdInout !== undefined) {
+        clearTimeout(timeoutIdInout);
+    }
+    timeoutIdInout = setTimeout(clearInput, 5000);
+
     if (inputValue === 'injects3crets') {
         fetchData();
     } else {
@@ -58,6 +66,9 @@ const hideList = () => {
 const clearInput = () => {
     input.value = "";
 }
+
+
+
 //
 // let pending: object = {};
 //
