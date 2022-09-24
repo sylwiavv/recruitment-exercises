@@ -43,6 +43,12 @@ const setColors = (color: string) => {
     searchBoxInput.style.color = color;
     chosenColorBox.style.backgroundColor = color;
     chosenColorBox.innerHTML = color;
+    const foundBlack = colors.filter(color => color.category === 'black');
+    if (foundBlack[0].id === color) {
+        chosenColorBox.style.color = '#fff';
+    } else {
+        chosenColorBox.style.color = foundBlack[0].id;
+    }
 }
 
 const cleanInput = () => {
@@ -58,8 +64,7 @@ const renderColors = () => {
         colorElement.innerHTML = id;
         colorElement.style.backgroundColor = `${id}`
         id === '#000' && (colorElement.style.color = '#fff');
-        // id === '#000' && (chosenColorBox.style.color = '#fff');
-        colorsWrapper.appendChild(colorElement)
+        colorsWrapper.appendChild(colorElement);
     });
 
     searchBoxWrapper.appendChild(colorsWrapper)
