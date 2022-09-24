@@ -23,5 +23,4 @@ export const closeModal = () => {
 
     getTitleInput.value = '';
     getContentInput.value = '';
-
 };

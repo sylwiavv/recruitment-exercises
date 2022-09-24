@@ -42,6 +42,7 @@ addArticle.addEventListener('click', (e: Event) => {
 
 const updateLikes = (childLikes: number, likesNumberElement: Element, currentArticleIndex: number) => {
   allArticles[currentArticleIndex].likes = childLikes;
+
   likesNumberElement.innerHTML = String(childLikes);
 };
 
@@ -50,7 +51,7 @@ renderArticles(updateLikes);
 body.addEventListener('click', (e: Event) => {
   if ((e.target as HTMLButtonElement).matches('#button-like') || (e.target as HTMLButtonElement).matches('#button-dislikes')) {
     let parent = (e.target as HTMLElement).parentNode;
-    let currentArticleIndex: number = parseInt((parent.parentNode.parentNode as HTMLElement).getAttribute('for'));
+    let currentArticleIndex: number = parseInt((parent.parentNode.parentNode.parentNode as HTMLElement).getAttribute('for'));
     let likesNumberElement = parent.children[1];
     let childLikes: number = parseInt(parent.children[1].innerHTML);
 
