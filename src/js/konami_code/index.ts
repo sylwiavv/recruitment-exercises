@@ -4,7 +4,10 @@ const ESC = 27;
 const input: HTMLInputElement = document.querySelector('#konami_input');
 const wrapper: HTMLElement = document.querySelector('#konami_code');
 const list: HTMLUListElement = document.createElement('ul');
-let clear: ReturnType<typeof setTimeout>;
+
+let timeoutIdInout: ReturnType<typeof setTimeout>;
+let timeoutIdList: ReturnType<typeof setTimeout>;
+
 // Display 5 newest issues names and nickname of the author
 const fetchData = (items: number = 5) => {
     const data = `https://api.github.com/repos/elixir-lang/elixir/issues?&per_page=${items}`;
@@ -19,19 +22,23 @@ const fetchData = (items: number = 5) => {
         .catch(err => console.log('Request Failed', err));
 }
 
-let timeoutIdInout: ReturnType<typeof setTimeout>;
-let timeoutIdList: ReturnType<typeof setTimeout>;
 
 input.addEventListener('input', (e) => {
     let inputValue: string = (e.target as HTMLTextAreaElement).value;
-    console.log(timeoutIdInout);
-    if ( timeoutIdInout !== undefined) {
+
+    if (timeoutIdInout !== undefined || inputValue === '') {
         clearTimeout(timeoutIdInout);
     }
+
     timeoutIdInout = setTimeout(clearInput, 5000);
 
     if (inputValue === 'injects3crets') {
         fetchData();
+        if (timeoutIdList  !== undefined) {
+            clearTimeout(timeoutIdList);
+            console.log(timeoutIdList);
+        }
+        timeoutIdList = setTimeout(hideList, 15000);
     } else {
         hideList();
     }
