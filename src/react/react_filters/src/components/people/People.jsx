@@ -1,13 +1,14 @@
 import React, { useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 // ...
 
-function People(props) {
-  // ...
+const People = (props) => {
+  const people = useSelector(({people}) => people.list);
 
   return (
-    <div>
-      {/* ... */}
-    </div>
+        people.map(({id, name}) => (
+              <div className='App-box'>{name}</div>
+        ))
   );
 }
 

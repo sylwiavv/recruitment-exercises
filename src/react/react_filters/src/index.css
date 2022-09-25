@@ -39,6 +39,7 @@ body {
   border: 0;
   outline: none;
   text-align: center;
+  width: 100%;
 }
 
 .App-wrapper {

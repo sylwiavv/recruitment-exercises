@@ -1,14 +1,14 @@
 import React from 'react';
 // ...
 
-function Filter(props) {
-  // ...
-
+const Filter = (props) => {
   return (
-    <div className='App-box'>
-      {/* ... */}
-    </div>
-  );
+      <div className='App-box'>
+        <label>
+          <input />
+        </label>
+      </div>
+  )
 }
 
 Filter.propTypes = {
