@@ -35,7 +35,7 @@ $indent_xl: 32px;
 
 $mobile: "(max-width: 375px)";
 $tablet: "(min-width: 768px) and (max-width: 1023px)";
-$desktop: "(min-width: 1024px)";
+$desktop: '(min-width: 990px)';
 $largeDesktop: "(min-width: 1440px)";
 
 @mixin gradientBackground() {

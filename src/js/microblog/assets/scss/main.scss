@@ -36,10 +36,10 @@ body {
 .container {
   max-width: 1440px;
   margin: 0 auto;
-  padding: $indent_xl * 2 $indent_base;
+  padding: $indent_xl * 2 $indent_s;
 
-  @media ($largeDesktop) {
-    padding: $indent_xl * 2 0;
+  @media only screen and ($desktop) {
+    padding: $indent_xl * 2 $indent_base;
   }
 }
 
