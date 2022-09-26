@@ -25,13 +25,31 @@ const initialState = {
   query: '',
 };
 
+export const addNote = (payload) => {
+  return {
+    list:PEOPLE,
+    type: 'DO_NOTHING',
+    payload: {
+      ...payload,
+    },
+  };
+};
+
 export default function people(state = initialState, action) {
   switch (action.type) {
 
     // this is an example
     case types.DO_NOTHING: {
-      return state;
+      return {
+        ...state,
+        notes: [...state.list, action.payload],
+      }
     }
+
+    // case types.DO_NOTHING: {
+    //
+    //   return state;
+    // }
 
     default:
       return state;
