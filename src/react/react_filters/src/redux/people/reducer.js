@@ -1,4 +1,5 @@
 import * as types from '../people/types';
+import {DO_NOTHING} from "../people/types";
 
 const PEOPLE = [
   { id: 1, name: 'Jeffrey Perkins' },
@@ -27,11 +28,8 @@ const initialState = {
 
 export const addNote = (payload) => {
   return {
-    list:PEOPLE,
     type: 'DO_NOTHING',
-    payload: {
-      ...payload,
-    },
+    payload,
   };
 };
 
@@ -39,12 +37,11 @@ export default function people(state = initialState, action) {
   switch (action.type) {
 
     // this is an example
-    case types.DO_NOTHING: {
+    case DO_NOTHING:
       return {
         ...state,
-        notes: [...state.list, action.payload],
-      }
-    }
+        list: [...state.list, action.payload],
+      };
 
     // case types.DO_NOTHING: {
     //

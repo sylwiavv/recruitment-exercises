@@ -2,11 +2,12 @@ import React, { useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // ...
 import {addNote} from "../../redux/people/reducer";
+import store from "../../store";
 
 const People = (props) => {
   const people = useSelector(({people}) => people.list);
     const dispatch = useDispatch();
-    console.log(props);
+    console.log(store.getState());
 
     const filterPeople = () => {
       const matchString = 'Elo';
