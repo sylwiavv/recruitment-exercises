@@ -1,23 +1,19 @@
 import React from 'react';
-import {addNote} from "../../redux/people/reducer";
-import {useDispatch} from "react-redux";
-// ...
-
+import { filterPeople } from "../../redux/people/actions";
+import { useDispatch } from "react-redux";
 
 const Filter = (props) => {
     const dispatch = useDispatch();
 
-    const handleAddNote = (e) => {
+    const handleInputOnChange = (e) => {
         const inputValue = e.target.value;
-
-        const query = dispatch(addNote({ query: inputValue}));
-        console.log(query.payload);
+        dispatch(filterPeople({ query: inputValue }));
     };
 
   return (
       <div className='App-box'>
         <label>
-          <input onChange={handleAddNote} />
+          <input onChange={handleInputOnChange} />
         </label>
       </div>
   )

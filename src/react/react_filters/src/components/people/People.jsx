@@ -1,25 +1,22 @@
 import React, { useMemo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-// ...
-import {addNote} from "../../redux/people/reducer";
-import store from "../../store";
+import { useSelector } from 'react-redux';
 
 const People = (props) => {
   const people = useSelector(({people}) => people.list);
-    const dispatch = useDispatch();
-    console.log(store.getState());
+  const query = useSelector(({people}) => people.query);
 
-    const filterPeople = () => {
-      const matchString = 'Elo';
-      // console.log(addNote())
-      //   dispatch(addNote());
+  const filterPeople = people.filter(({name}) => {
+    let valueFromInput = query.query;
 
-    }
+    return name.includes(valueFromInput)
+  });
+
+  const arrayToMap = filterPeople.length === 0 ?  people : filterPeople;
+  const memoizedValue = useMemo(() => arrayToMap, [filterPeople.length]);
 
   return (
       <>
-        <button onClick={filterPeople}>Click</button>
-          {people.map(({id, name}) => (
+          {memoizedValue.map(({id, name}) => (
               <div key={id} className='App-box'>{name}</div>
           ))}
       </>

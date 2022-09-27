@@ -1,5 +1,4 @@
-import * as types from '../people/types';
-import {DO_NOTHING} from "../people/types";
+import { FILTER_PEOPLE } from "../people/types";
 
 const PEOPLE = [
   { id: 1, name: 'Jeffrey Perkins' },
@@ -26,27 +25,15 @@ const initialState = {
   query: '',
 };
 
-export const addNote = (payload) => {
-  return {
-    type: 'DO_NOTHING',
-    payload,
-  };
-};
-
 export default function people(state = initialState, action) {
   switch (action.type) {
 
-    // this is an example
-    case DO_NOTHING:
+    case FILTER_PEOPLE:
       return {
         ...state,
-        list: [...state.list, action.payload],
+        list: [...state.list],
+        query: action.payload
       };
-
-    // case types.DO_NOTHING: {
-    //
-    //   return state;
-    // }
 
     default:
       return state;
