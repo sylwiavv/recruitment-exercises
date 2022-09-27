@@ -8,10 +8,13 @@ const People = (props) => {
   const filterPeople = people.filter(({name}) => {
     let valueFromInput = query.query;
 
-    return name.includes(valueFromInput)
+    let changeName = name.toLowerCase();
+    let changeValueFromInput = valueFromInput !== undefined ? valueFromInput.toLowerCase() : valueFromInput;
+
+    return changeName.includes(changeValueFromInput)
   });
 
-  const arrayToMap = filterPeople.length === 0 ?  people : filterPeople;
+  const arrayToMap = (query.query === undefined) ?  people : filterPeople;
   const memoizedValue = useMemo(() => arrayToMap, [filterPeople.length]);
 
   return (
