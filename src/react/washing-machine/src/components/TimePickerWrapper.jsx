@@ -3,9 +3,8 @@ import DatePicker from 'react-datepicker';
 
 const TimePickerWrapper = ({
   input: { onChange, value },
-  meta: { error },
+  meta: { error, touched },
 }) => {
-  console.log(error);
   return (
     <React.Fragment>
       <DatePicker
@@ -17,7 +16,8 @@ const TimePickerWrapper = ({
         dateFormat="h:mm aa"
         timeCaption="Time"
       />
-      <span className="reservations__error">{error}</span>
+        {touched && <span className="reservations__error">{error}</span>}
+
     </React.Fragment>
   );
 };

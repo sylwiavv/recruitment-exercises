@@ -6,5 +6,5 @@ export const saveReservations = days => ({
 });
 
 export const clearReservations = () => ({
-  type: t.CLEAR_RESERVATIONS
+  type: t.CLEAR_RESERVATIONS,
 });
