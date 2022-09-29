@@ -9,24 +9,31 @@ import {WEEK_DAYS} from '../common/constants';
 import {clearReservations, saveReservations,} from '../actions/machine';
 import SingleDayReservations from './SingleDayReservations';
 import './Reservations.scss';
+import moment from 'moment';
 
 const emptyErrorMsg = `Can't not be empty`;
+const endTimeMsg = `End time should be after start time`;
+const durationMsg = `Reservation too long`;
 
 const validate = (values, submitFailed) => {
-    console.log(submitFailed);
+    // console.log('validation')
+    // console.log(submitFailed);
     let errors = {};
 
     const isPresent = (values) => {
         Object.entries(values).forEach(([key, value]) => {
             if (value !== []) {
                 errors[key] = []
-                value.forEach(({start, end}, i) => {
+                value.forEach(({ start, end }) => {
                     let err = {};
-                    if (start === null) {
-                        err.start = `${emptyErrorMsg}`
+                    if (start === null) {err.start = `${emptyErrorMsg}`}
+                    if (end === null) { err.end = `${emptyErrorMsg}`}
+                    if (!moment(end).isAfter(start) && end !== null) {
+                        err.end = `${endTimeMsg}`
                     }
-                    if (end === null) {
-                        err.end = `${emptyErrorMsg}`
+                    const reservationDuration = Number(moment(end).diff(moment(start), 'hours', true).toFixed(2));
+                    if (reservationDuration > 2.50) {
+                        err.end = `${durationMsg}`
                     }
                     errors[key].push(err);
                 })
@@ -35,9 +42,9 @@ const validate = (values, submitFailed) => {
     }
 
   isPresent(values);
-  console.log(errors)
 
-  return errors;
+    return errors;
+
 };
 
 
@@ -57,6 +64,7 @@ const Reservations = ({
               key={`single-${day}`}
               component={SingleDayReservations}
               name={day}
+              hello={'errors'}
             />
           ))}
           <Button color="primary" type="submit">
@@ -84,13 +92,6 @@ const mapStateToProps = state => ({
   initialValues: state.machine,
 });
 
-
-const afterSubmit = (result, dispatch) => {
-  console.log('submit')
-  dispatch(reset('reservations'))
-};
-
-
 const mapDispatchToProps = {
   clearReservations,
   saveReservations,
@@ -104,7 +105,5 @@ export default connect(
     form: 'reservations',
     validate,
     enableReinitialize: true,
-    onSubmitSuccess: afterSubmit,
-
   })(Reservations),
 );

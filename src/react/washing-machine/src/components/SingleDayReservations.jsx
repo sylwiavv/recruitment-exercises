@@ -9,7 +9,7 @@ const SingleDayReservations = ({ fields, meta: { error } }) => {
     <Row key="header">
       <Col>
         <h5>{_capitalize(fields.name)}</h5>
-        <span className="reservations__error">{error}</span>
+         <span className="reservations__error">{error}</span>
       </Col>
     </Row>,
     <Row key="entry">
