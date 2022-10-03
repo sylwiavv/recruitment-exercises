@@ -5,7 +5,7 @@ const input: HTMLInputElement = document.querySelector('#konami_input');
 const wrapper: HTMLElement = document.querySelector('#konami_code');
 const list: HTMLUListElement = document.createElement('ul');
 
-let timeoutIdInout: ReturnType<typeof setTimeout>;
+let timeoutIdInput: ReturnType<typeof setTimeout>;
 let timeoutIdList: ReturnType<typeof setTimeout>;
 
 // Display 5 newest issues names and nickname of the author
@@ -26,11 +26,11 @@ const fetchData = (items: number = 5) => {
 input.addEventListener('input', (e) => {
     let inputValue: string = (e.target as HTMLTextAreaElement).value;
 
-    if (timeoutIdInout !== undefined || inputValue === '') {
-        clearTimeout(timeoutIdInout);
+    if (timeoutIdInput !== undefined || inputValue === '') {
+        clearTimeout(timeoutIdInput);
     }
 
-    timeoutIdInout = setTimeout(clearInput, 5000);
+    timeoutIdInput = setTimeout(clearInput, 5000);
 
     if (inputValue === 'injects3crets') {
         fetchData();
@@ -73,28 +73,3 @@ const hideList = () => {
 const clearInput = () => {
     input.value = "";
 }
-
-
-
-//
-// let pending: object = {};
-//
-// function mySetTimeout(callback: () => void, delay: number) {
-//     let t: ReturnType<typeof setTimeout>;
-//     t = setTimeout(function() {
-//         // @ts-ignore
-//         delete pending[t];
-//         callback()}, delay)
-//     // @ts-ignore
-//     pending[t]=1;
-//     console.log(t);
-// }
-// function clearAllTimeouts() {
-//     for (var t in pending) if (pending.hasOwnProperty(t)) {
-//         clearTimeout(t);
-//         // @ts-ignore
-//         delete pending[t];
-//     }
-// }
-
-// mySetTimeout(clearInput, 15000);

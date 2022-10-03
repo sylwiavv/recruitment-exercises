@@ -18,8 +18,10 @@ const errorMessage: string = 'You need to fill all fields';
 
 export const createErrorMessage = document.createElement('p');
 createErrorMessage.classList.add('error-message');
+
 const getAllArticlesWrapper: HTMLElement = document.querySelector('.articles');
 
+// Adding new article
 const addNewArticle = (article: Article) => {
   getAllArticlesWrapper.innerHTML = '';
   allArticles.push(article);
@@ -40,6 +42,7 @@ addArticle.addEventListener('click', (e: Event) => {
   }
 });
 
+// Update likes
 const updateLikes = (childLikes: number, likesNumberElement: Element, currentArticleIndex: number) => {
   allArticles[currentArticleIndex].likes = childLikes;
 

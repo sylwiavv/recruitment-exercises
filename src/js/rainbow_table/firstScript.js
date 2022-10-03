@@ -1,7 +1,7 @@
 const {readFileSync} = require('fs');
 const fs = require('fs');
-const ourText = readFileSync('./data/pan_tadeusz.txt', 'utf-8').trim();
-const words = ourText.split(/(\n| )/g);
+const sourceText = readFileSync('./data/pan_tadeusz.txt', 'utf-8').trim();
+const words = sourceText.split(/(\n| )/g);
 const trimWords = words.map( word => word.trim());
 
 const events = require('events');
@@ -11,9 +11,10 @@ const md5 = require("md5");
 let text = "";
 const fileName = process.argv[2] || 'word_list.txt'
 const escapeRegExp = (string) =>  string.replace(/(\.|\?|-|—|,|\(|\)|\*|!|"|;|:|'|«|»|\/)/g, ''); // $& means the whole matched string
+
 //helpers
-const afterReg = trimWords.map( t =>  escapeRegExp(t));
-const withoutEmptyWords = afterReg.filter(word => word !== '');
+const escapedRegExp = trimWords.map( t =>  escapeRegExp(t));
+const withoutEmptyWords = escapedRegExp.filter(word => word !== '');
 
 const mySet = new Set(withoutEmptyWords);
 

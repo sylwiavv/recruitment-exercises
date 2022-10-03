@@ -8,10 +8,10 @@ const People = (props) => {
   const filterPeople = people.filter(({name}) => {
     let valueFromInput = query.query;
 
-    let changeName = name.toLowerCase();
+    let nameLowerCas = name.toLowerCase();
     let changeValueFromInput = valueFromInput !== undefined ? valueFromInput.toLowerCase() : valueFromInput;
 
-    return changeName.includes(changeValueFromInput)
+    return nameLowerCas.includes(changeValueFromInput)
   });
 
   const arrayToMap = (query.query === undefined) ?  people : filterPeople;

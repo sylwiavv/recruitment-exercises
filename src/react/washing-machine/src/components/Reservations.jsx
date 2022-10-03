@@ -20,113 +20,114 @@ const reservationConflict = 'Conflict between two reservations';
 const validate = (values, submitFailed) => {
     let errors = {};
 
-    const isPresent = (values) => {
-        Object.entries(values).forEach(([key, value]) => {
-            if (value !== []) {
-                errors[key] = []
-                let err = {};
+    Object.entries(values).forEach(([key, value]) => {
+        if (value !== []) {
+            errors[key] = []
+            let err = {};
 
-                value.forEach(({ start, end }) => {
-                    if (start === null) {err.start = `${emptyErrorMsg}`}
-                    if (end === null) { err.end = `${emptyErrorMsg}`}
-                    if (!moment(end).isAfter(start) && end !== null) {
-                        err.end = `${endTimeMsg}`
-                    }
-                    const reservationDuration = Number(moment(end).diff(moment(start), 'hours', true).toFixed(2));
-                    if (reservationDuration > 2.50) {
-                        err.end = `${durationMsg}`
-                    }
-                    let actualReservation = {start, end};
-                    const conflict = (actualReservation, value) => {
-                        let collide = false;
-                        let notCollide = value.every((val) => {
-                            collide = (moment(val.start).isBetween(actualReservation.start, actualReservation.end) ||
+            value.forEach(({start, end}) => {
+                if (start === null) {
+                    err.start = `${emptyErrorMsg}`
+                }
+                if (end === null) {
+                    err.end = `${emptyErrorMsg}`
+                }
+                if (!moment(end).isAfter(start) && end !== null) {
+                    err.end = `${endTimeMsg}`
+                }
+                const reservationDurationHoursn = Number(moment(end).diff(moment(start), 'hours', true).toFixed(2));
+                if (reservationDurationHoursn > 2.50) {
+                    err.end = `${durationMsg}`
+                }
+                let actualReservation = {start, end};
+                const conflict = (actualReservation, value) => {
+                    let collide = false;
+                    let notCollide = value.every((val) => {
+                        collide = (moment(val.start).isBetween(actualReservation.start, actualReservation.end) ||
                             moment(val.end).isBetween(actualReservation.start, actualReservation.end))
-                            // console.log("START")
-                            // console.log('value.length ' + value.length > 1 );
-                            // console.log(moment(val.start).isBetween(actualReservation.start, actualReservation.end))
-                            // console.log(val.start, actualReservation.start, actualReservation.end)
-                            // console.log("END")
-                            // console.log(val.end, actualReservation.start, actualReservation.end)
-                            // console.log(moment(val.end).isBetween(actualReservation.start, actualReservation.end))
-                            // console.log("_____________");
-                            //
-                            // console.log('colide z funkcji loop ' + collide)
-                            return !collide
-                        });
-                        // console.log('colide z funkcji ' + collide)
+                        // console.log("START")
+                        // console.log('value.length ' + value.length > 1 );
+                        // console.log(moment(val.start).isBetween(actualReservation.start, actualReservation.end))
+                        // console.log(val.start, actualReservation.start, actualReservation.end)
+                        // console.log("END")
+                        // console.log(val.end, actualReservation.start, actualReservation.end)
+                        // console.log(moment(val.end).isBetween(actualReservation.start, actualReservation.end))
+                        // console.log("_____________");
+                        //
+                        // console.log('colide z funkcji loop ' + collide)
+                        return !collide
+                    });
+                    // console.log('colide z funkcji ' + collide)
 
-                        return !notCollide;
-                    }
-                    let collide2 = conflict(actualReservation, value)
-                    // console.log("COLLIDE " + collide2)
-                    if (collide2) { errors[key]._error = `${reservationConflict}`}
-                    errors[key].push(err);
-                })
-            }
-        });
-    }
-    isPresent(values);
+                    return !notCollide;
+                }
+                let collide2 = conflict(actualReservation, value)
+                // console.log("COLLIDE " + collide2)
+                if (collide2) {
+                    errors[key]._error = `${reservationConflict}`
+                }
+                errors[key].push(err);
+            })
+        }
+    });
     return errors;
 };
-
 
 const Reservations = ({
   clearReservations,
   handleSubmit,
   machine,
-  saveReservations,
-}) => (
-  <Container className="reservations">
-    <Form onSubmit={handleSubmit(saveReservations)}>
-      <Row>
-        <Col xs={8}>
-          <h2>Reservations</h2>
-          {_map(WEEK_DAYS, day => (
-            <FieldArray
-              key={`single-${day}`}
-              component={SingleDayReservations}
-              name={day}
-              hello={'errors'}
-            />
-          ))}
-          <Button color="primary" type="submit">
-            Save data
-          </Button>
-        </Col>
-        <Col xs={4}>
-          <ReactJson src={machine} name="machineStoreState" />
-          <Button
-            onClick={clearReservations}
-            color="warning"
-            className="reservations__clear-btn"
-          >
-            Reset Data
-          </Button>
-        </Col>
-      </Row>
-    </Form>
-  </Container>
+  saveReservations,}) => (
+    <Container className="reservations">
+        <Form onSubmit={handleSubmit(saveReservations)}>
+            <Row>
+                <Col xs={8}>
+                    <h2>Reservations</h2>
+                    {_map(WEEK_DAYS, day => (
+                        <FieldArray
+                            key={`single-${day}`}
+                            component={SingleDayReservations}
+                            name={day}
+                            hello={'errors'}
+                        />
+                    ))}
+                    <Button color="primary" type="submit">
+                        Save data
+                    </Button>
+                </Col>
+                <Col xs={4}>
+                    <ReactJson src={machine} name="machineStoreState"/>
+                    <Button
+                        onClick={clearReservations}
+                        color="warning"
+                        className="reservations__clear-btn"
+                    >
+                        Reset Data
+                    </Button>
+                </Col>
+            </Row>
+        </Form>
+    </Container>
 );
 
 
 const mapStateToProps = state => ({
-  machine: state.machine,
-  initialValues: state.machine,
+    machine: state.machine,
+    initialValues: state.machine,
 });
 
 const mapDispatchToProps = {
-  clearReservations,
-  saveReservations,
+    clearReservations,
+    saveReservations,
 };
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
+    mapStateToProps,
+    mapDispatchToProps,
 )(
-  reduxForm({
-    form: 'reservations',
-    validate,
-    enableReinitialize: true,
-  })(Reservations),
+    reduxForm({
+        form: 'reservations',
+        validate,
+        enableReinitialize: true,
+    })(Reservations),
 );
