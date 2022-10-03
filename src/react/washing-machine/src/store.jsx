@@ -19,3 +19,4 @@ export default () => {
   let persistor = persistStore(store);
   return { store, persistor };
 };
+

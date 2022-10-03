@@ -8,3 +8,13 @@ export const saveReservations = days => ({
 export const clearReservations = () => ({
   type: t.CLEAR_RESERVATIONS,
 });
+
+
+export const saveUser = payload => ({
+  type: t.SAVE_USER,
+  payload
+});
+
+export const deleteUser = () => ({
+  type: t.DELETE_USER,
+});

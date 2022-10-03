@@ -1,19 +1,21 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import { Provider } from "react-redux";
-import createStore from "./store";
-import { PersistGate } from "redux-persist/integration/react";
+// import ReactDOM from 'react-dom/client'
+
+import {StrictMode} from 'react';
+import {createRoot} from 'react-dom/client';
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-datepicker/dist/react-datepicker.css";
+
 import App from "./App";
 
-const { store, persistor } = createStore();
+const rootElement = document.getElementById('root');
+const root = createRoot(rootElement);
 
-ReactDOM.render(
-  <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
-      <App />
-    </PersistGate>
-  </Provider>,
-  document.getElementById("root")
+root.render(
+    <StrictMode>
+        <App />
+    </StrictMode>,
 );
+
+// ReactDOM.render(<App />, document.getElementById('root'));
