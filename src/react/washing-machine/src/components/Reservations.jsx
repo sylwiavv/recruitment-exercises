@@ -88,7 +88,6 @@ const Reservations = ({
                             key={`single-${day}`}
                             component={SingleDayReservations}
                             name={day}
-                            hello={'errors'}
                         />
                     ))}
                     <Button color="primary" type="submit">

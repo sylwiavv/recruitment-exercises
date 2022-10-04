@@ -17,7 +17,7 @@ export default (state = defaultState, action) => {
     case t.SAVE_RESERVATIONS:
       return {
         ...state,
-        ...action.days
+        ...action.days,
       };
     case t.CLEAR_RESERVATIONS:
       return defaultState;

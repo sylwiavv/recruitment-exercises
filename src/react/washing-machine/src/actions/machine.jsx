@@ -10,11 +10,11 @@ export const clearReservations = () => ({
 });
 
 
-export const saveUser = payload => ({
-  type: t.SAVE_USER,
-  payload
-});
-
-export const deleteUser = () => ({
-  type: t.DELETE_USER,
-});
+// export const saveUser = payload => ({
+//   type: t.SAVE_USER,
+//   payload
+// });
+//
+// export const deleteUser = () => ({
+//   type: t.DELETE_USER,
+// });

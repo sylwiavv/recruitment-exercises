@@ -12,6 +12,7 @@ const { store, persistor } = createStore();
 
 const App = () => (
     <Provider store={store}>
+        {console.log(store.getState())}
         <PersistGate loading={null} persistor={persistor}>
             <BrowserRouter>
                 <MainLayout>

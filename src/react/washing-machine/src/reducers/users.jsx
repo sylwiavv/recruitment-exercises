@@ -1,53 +1,55 @@
-import _reduce from "lodash/reduce";
-
-import * as t from "./../actions/actionTypes";
-import {USERS_ATR} from "../common/constants";
 import { v4 as uuid } from 'uuid';
 
+export const addUser = payload => ({
+    type: "ADD_USER",
+    payload: {
+        id: uuid(),
+        ...payload,
+    },
+});
 
-const PEOPLE = [
-    {id: 1, firstName: 'Jeffrey', lastName: 'Perkins', roomNumber: 2},
-    {id: 2, firstNam: 'Lorna', lastName: 'Williamson', roomNumber: 2},
-];
+export const deleteUser = (payload) => ({
+    type: "DELETE_USER",
+    payload,
+});
+
+export const clean = () => ({
+    type: "CLEAN",
+});
+
 
 const initialState = {
-    users: PEOPLE,
+    users: [],
 };
 
 // const defaultState = _reduce(
 //     USERS_ATR,
-//     (result, entry) => {
-//         result[entry] = [];
-//         return result;
+//     (users, entry) => {
+//         users[entry] = [{
+//             id: uuid(),
+//             userName: 'Initial',
+//             userLastName: 'User',
+//         },];
+//         return users;
 //     },
 //     {}
 // );
-export const saveUser = (payload) => {
-    return {
-        type: 'SAVE_USER',
-        payload: {
-            id: uuid(),
-            ...payload,
-        },
-    };
-};
 
-export default (state = initialState, action) => {
+export const users = (state = initialState, action) => {
     switch (action.type) {
-        // case t.SAVE_USER:
-        //     return {
-        //         ...state,
-        //         ...action.users
-        //     };
-
-        case t.SAVE_USER:
+        case "ADD_USER":
             return {
                 ...state,
-                users: [...state.list]
+                users: [...state.users, action.payload],
             };
-        case t.DELETE_USER:
-            return state;
-        default:
+        case "DELETE_USER":
+            return {
+                users: action.payload
+            };
+        case "CLEAN":
+            return initialState;
+
+            default:
             return state;
     }
 };
