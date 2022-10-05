@@ -1,122 +1,55 @@
-// import React from "react";
-// import {Field, reduxForm} from "redux-form"
-// import {deleteUser} from "../actions/machine";
-// import {connect} from "react-redux";
-// import ReactJson from "react-json-view";
-// import {Button, Input} from "reactstrap";
-// import {saveUser} from "../reducers/users";
-//
-// // const validate = (fields) => {
-// //     const {firstName, lastName} = fields;
-// //     return {
-// //         firstName: !firstName ? "Add name" : undefined,
-// //         lastName: !lastName ? "Add name" : undefined,
-// //     };
-// // }
-// const renderInput = ({input, meta: { error, touched }}) => (
-//     <>
-//         <Input {...input} type="text" error={error}  />
-//         {touched && <span className="reservations__error">{error}</span>}
-//     </>
-//
-// )
-//
-// const onSubmit = (values) => {
-//     // alert(JSON.stringify(values))
-//     console.log(JSON.stringify(values))
-// }
+import React from 'react'
+import {addUser, deleteUser, clean} from "../reducers/users";
+import {connect} from 'react-redux';
+import {Field, formValues, formValueSelector, getFormValues, reduxForm} from "redux-form";
+import ReactJson from "react-json-view";
+import {Button, Form, Input, ListGroup, ListGroupItem} from "reactstrap";
+import _map from "lodash/map";
+
+const renderInput = ({
+    label,
+input,
+meta: { error, touched }}) => (
+    <>
+        <label>{label}</label>
+        <Input {...input} type="text" error={error}  />
+        {touched && <span className="reservations__error">{error}</span>}
+    </>
+)
 //
 // const validate = values => {
 //     const errors = [];
 //     if (!values || values === '') { return 'This field is required'}
 //     return errors;
 // };
-//
-// const AddUserForm = ({
-//     error,}) => (
-//     <>
-//         <h2>Users</h2>
-//     {/*    /!*<form onSubmit={handleSubmit(saveUser)}>*!/*/}
-//     {/*    /!*<form onSubmit={handleSubmit(saveUser)}>            /!*<h5>{_capitalize(fields.firstName)}</h5>*!/*!/*/}
-//
-//     {/*        <ReactJson src={users} name="usersStoreState" />*/}
-//     {/*/!*        <div>*!/*/}
-//     {/*/!*            <label htmlFor="first_name">*!/*/}
-//     {/*/!*                <span>First name </span>*!/*/}
-//     {/*/!*                <Field name="first_name" component={renderInput} validate={validate}/>*!/*/}
-//     {/*/!*            </label>*!/*/}
-//     {/*/!*            /!*<span className="reservations__error">{error}</span>*!/*!/*/}
-//
-//     {/*/!*        </div>*!/*/}
-//     {/*/!*        <div>*!/*/}
-//     {/*/!*            <label htmlFor="last_name">*!/*/}
-//     {/*/!*                <span>Last name </span>*!/*/}
-//     {/*/!*                <Field name="last_name" component={renderInput} validate={validate}/>*!/*/}
-//     {/*/!*            </label>*!/*/}
-//     {/*/!*        </div>*!/*/}
-//     {/*/!*        <Button type="submit" color="primary" >Submit</Button>*!/*/}
-//     {/*/!*        /!*<button onClick={() => {*!/*!/*/}
-//     {/*/!*        /!*    fields.push({ firstName: null, lastName: null });*!/*!/*/}
-//     {/*/!*        /!*}}>Submit</button>*!/*!/*/}
-//     {/*/!*    </form>*!/*/}
-//     </>
-// )
-// export default AddUserForm;
-// // const mapStateToProps = state => ({
-// //     users: state.users,
-// //     initialValues: state.users,
-// // });
-// //
-// // const mapDispatchToProps = {
-// //     saveUser,
-// //     deleteUser,
-// // };
-// //
-// // export default connect(
-// //     mapStateToProps,
-// //     mapDispatchToProps,
-// // )(
-// //     reduxForm({
-// //         form: 'AddUserForm',
-// //         validate,
-// //         onSubmit,
-// //     })(AddUserForm),
-// // );
-//
-import React from 'react'
-import {addUser, deleteUser, clean} from "../reducers/users";
-import {connect} from 'react-redux';
-import {reduxForm} from "redux-form";
-import ReactJson from "react-json-view";
-import {Button, ListGroup, ListGroupItem} from "reactstrap";
-import _map from "lodash/map";
 
-const AddUserForm = ({ addUser, deleteUser, users, handleSubmit, clean, fields }) => {
-    const handleAddUser = () => {
-        addUser({userName: 'Sylwia2', userLastName: 'Mentel'})
-        return console.log(users)
-    }
 
-    const handleRemoveUser = (id) => {
+const AddUserForm = ({ addUser, deleteUser, users, handleSubmit, clean, error, state, fields }) => {
+
+    const submit = ({firstName, lastName}) => { addUser({userName: firstName, userLastName: lastName})}
+    const handleRemoveUser = (id, users) => {
         deleteUser(users.users.filter((user) => user.id !==  id ))
     }
-
 
     return (
         <>
             <ReactJson src={users} name="usersStoreState"/>
-
             <h1>Users</h1>
             <ListGroup>
                 {_map(users.users, ({id, userName, userLastName}) => (
                         <ListGroupItem key={id}>
                             <div>{userName} {userLastName}</div>
-                            <Button color="danger" onClick={() => handleRemoveUser(id)}>Delete User</Button>
+                            <Button color="danger" onClick={() => handleRemoveUser(id, users)}>Delete User</Button>
                         </ListGroupItem>
                 ))}
             </ListGroup>
-        <Button color="primary" onClick={handleAddUser}>Add</Button>
-        <Button color="warning" onClick={clean} className="reservations__clear-btn">Reset All Users</Button>
+            <form onSubmit={handleSubmit(values => submit(values))}>
+                 <Field name="firstName" label="First Name" component={renderInput} />
+                 <Field name="lastName" label="Last Name" component={renderInput}  />
+                 <Field name="roomNumber" label="Room Number" component={renderInput}  />
+                <Button color="primary" type="submit">Add</Button>
+                <Button color="warning" onClick={clean} className="reservations__clear-btn">Reset All Users</Button>
+            </form>
             </>
         )
 }
@@ -137,6 +70,7 @@ export default connect(
 )(
     reduxForm({
         form: 'users',
+        fields: ['firstName', 'lastName', 'roomNumber'],
         enableReinitialize: true,
     })(AddUserForm),
 );
