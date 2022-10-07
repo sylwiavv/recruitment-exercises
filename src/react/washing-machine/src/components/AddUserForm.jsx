@@ -26,7 +26,8 @@ meta: { error, touched }}) => (
 
 const AddUserForm = ({ addUser, deleteUser, users, handleSubmit, clean, error, state, fields }) => {
 
-    const submit = ({firstName, lastName}) => { addUser({userName: firstName, userLastName: lastName})}
+    const submit = ({firstName, lastName, roomNumber}) => {
+        addUser({userName: firstName, userLastName: lastName, roomNumber: roomNumber})}
     const handleRemoveUser = (id, users) => {
         deleteUser(users.users.filter((user) => user.id !==  id ))
     }
@@ -36,9 +37,9 @@ const AddUserForm = ({ addUser, deleteUser, users, handleSubmit, clean, error, s
             <ReactJson src={users} name="usersStoreState"/>
             <h1>Users</h1>
             <ListGroup>
-                {_map(users.users, ({id, userName, userLastName}) => (
+                {_map(users.users, ({id, userName, userLastName, roomNumber}) => (
                         <ListGroupItem key={id}>
-                            <div>{userName} {userLastName}</div>
+                            <div>{userName} {userLastName} {roomNumber}</div>
                             <Button color="danger" onClick={() => handleRemoveUser(id, users)}>Delete User</Button>
                         </ListGroupItem>
                 ))}
