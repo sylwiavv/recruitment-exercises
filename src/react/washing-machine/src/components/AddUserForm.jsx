@@ -5,6 +5,7 @@ import {Field, formValues, formValueSelector, getFormValues, reduxForm} from "re
 import ReactJson from "react-json-view";
 import {Button, Form, Input, ListGroup, ListGroupItem} from "reactstrap";
 import _map from "lodash/map";
+import DropdownList from "react-widgets/DropdownList";
 
 const renderInput = ({
     label,

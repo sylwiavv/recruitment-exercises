@@ -10,6 +10,8 @@ import {clearReservations, saveReservations,} from '../actions/machine';
 import SingleDayReservations from './SingleDayReservations';
 import './Reservations.scss';
 import moment from 'moment';
+import DropdownList from "react-widgets/DropdownList";
+import {Combobox} from "react-widgets/cjs";
 
 const emptyErrorMsg = `Can't not be empty`;
 const endTimeMsg = `End time should be after start time`;
@@ -73,46 +75,58 @@ const validate = (values, submitFailed) => {
     return errors;
 };
 
+
 const Reservations = ({
   clearReservations,
   handleSubmit,
-  machine,
-  saveReservations,}) => (
-    <Container className="reservations">
-        <Form onSubmit={handleSubmit(saveReservations)}>
-            <Row>
-                <Col xs={8}>
-                    <h2>Reservations</h2>
-                    {_map(WEEK_DAYS, day => (
-                        <FieldArray
-                            key={`single-${day}`}
-                            component={SingleDayReservations}
-                            name={day}
-                        />
-                    ))}
-                    <Button color="primary" type="submit">
-                        Save data
-                    </Button>
-                </Col>
-                <Col xs={4}>
-                    <ReactJson src={machine} name="machineStoreState"/>
-                    <Button
-                        onClick={clearReservations}
-                        color="warning"
-                        className="reservations__clear-btn"
-                    >
-                        Reset Data
-                    </Button>
-                </Col>
-            </Row>
-        </Form>
-    </Container>
-);
+  machine, users,
+  saveReservations}) => {
 
+
+    return (
+        <Container className="reservations">
+            <Form onSubmit={handleSubmit(saveReservations)}>
+                <Row>
+                    <Col xs={12}>
+                        <h2>Reservations</h2>
+                        {_map(WEEK_DAYS, day => (
+                            <FieldArray
+                                key={`single-${day}`}
+                                component={SingleDayReservations}
+                                name={day}
+                            />
+                        ))}
+                        {/*<DropdownList*/}
+                        {/*    data={userss}*/}
+                        {/*    dataKey='id'*/}
+                        {/*    textField='name'*/}
+                        {/*    defaultValue={1}*/}
+                        {/*/>*/}
+
+                        <Button color="primary" type="submit">
+                            Save data
+                        </Button>
+                    </Col>
+                    <Col xs={12}>
+                        <ReactJson src={machine} name="machineStoreState"/>
+                        <Button
+                            onClick={clearReservations}
+                            color="warning"
+                            className="reservations__clear-btn"
+                        >
+                            Reset Data
+                        </Button>
+                    </Col>
+                </Row>
+            </Form>
+        </Container>
+    );
+}
 
 const mapStateToProps = state => ({
     machine: state.machine,
     initialValues: state.machine,
+    users: state.users
 });
 
 const mapDispatchToProps = {

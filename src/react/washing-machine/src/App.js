@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.css";
+import "./App.scss";
 import {MainLayout, Reservations, SignInForm} from "./components";
 import { Provider } from "react-redux";
 import createStore from "./store";

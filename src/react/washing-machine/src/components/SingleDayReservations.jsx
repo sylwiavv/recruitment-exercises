@@ -1,10 +1,19 @@
 import React from 'react';
 import { Row, Col, Button } from 'reactstrap';
-import { Field } from 'redux-form';
+import {Field, reduxForm} from 'redux-form';
 import _capitalize from 'lodash/capitalize';
 import TimePickerWrapper from './TimePickerWrapper';
+import {connect} from "react-redux";
+import DropdownList from "react-widgets/DropdownList";
+import "react-widgets/styles.css";
+import DropDownList from "./DropDownList";
 
-const SingleDayReservations = ({ fields, meta: { error } }) => {
+
+
+const SingleDayReservations = ({ fields, store,  users, meta: { error } }) => {
+  // const userss = users.users.map(user => user.userName)
+  {console.log(fields)}
+
   return [
     <Row key="header">
       <Col>
@@ -30,6 +39,12 @@ const SingleDayReservations = ({ fields, meta: { error } }) => {
               component={TimePickerWrapper}
             />
           </Col>
+          <Col xs={{ size: 3, offset: 2 }}>
+            <Field
+                name={`${name}.user`}
+                component={DropDownList}
+            />
+          </Col>
           <Col xs={{ size: 1, offset: 1 }}>
             <Button
               onClick={() => {
@@ -48,7 +63,7 @@ const SingleDayReservations = ({ fields, meta: { error } }) => {
       <Col xs={{ size: 3, offset: 6 }}>
         <Button
           onClick={() => {
-            fields.push({ start: null, end: null });
+            fields.push({ start: null, end: null, user: null });
           }}
           color="warning"
           className="reservations__clear-btn"
@@ -60,4 +75,8 @@ const SingleDayReservations = ({ fields, meta: { error } }) => {
   ];
 };
 
-export default SingleDayReservations;
+const mapStateToProps = state => ({
+  users: state.users
+});
+
+export default connect(mapStateToProps)(SingleDayReservations);
