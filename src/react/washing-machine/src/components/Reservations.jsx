@@ -10,16 +10,13 @@ import {clearReservations, saveReservations,} from '../actions/machine';
 import SingleDayReservations from './SingleDayReservations';
 import './Reservations.scss';
 import moment from 'moment';
-import DropdownList from "react-widgets/DropdownList";
-import {Combobox} from "react-widgets/cjs";
 
 const emptyErrorMsg = `Can't not be empty`;
 const endTimeMsg = `End time should be after start time`;
 const durationMsg = `Reservation too long`;
 const reservationConflict = 'Conflict between two reservations';
-// const reservationsToClose = 'Two reservations too close to each other';
 
-const validate = (values, submitFailed) => {
+const validate = (values) => {
     let errors = {};
 
     Object.entries(values).forEach(([key, value]) => {
@@ -27,12 +24,16 @@ const validate = (values, submitFailed) => {
             errors[key] = []
             let err = {};
 
-            value.forEach(({start, end}) => {
+            value.forEach(({start, end, user}) => {
+                {console.log(value)}
                 if (start === null) {
                     err.start = `${emptyErrorMsg}`
                 }
                 if (end === null) {
                     err.end = `${emptyErrorMsg}`
+                }
+                if (user === null) {
+                    err.user = `${emptyErrorMsg}`
                 }
                 if (!moment(end).isAfter(start) && end !== null) {
                     err.end = `${endTimeMsg}`
@@ -75,13 +76,11 @@ const validate = (values, submitFailed) => {
     return errors;
 };
 
-
 const Reservations = ({
   clearReservations,
   handleSubmit,
-  machine, users,
+  machine,
   saveReservations}) => {
-
 
     return (
         <Container className="reservations">
