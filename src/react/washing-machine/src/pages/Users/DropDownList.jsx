@@ -11,6 +11,7 @@ const DropDownList = ({input: {onChange, value}, meta: {error, touched}, users})
                 selected={value !== '' ? value : null}
                 data={user}
                 onChange={onChange}
+                className="styled-input"
             />
             {touched && <span className="reservations__error">{error}</span>}
         </>

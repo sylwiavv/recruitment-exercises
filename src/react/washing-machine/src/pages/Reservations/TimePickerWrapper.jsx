@@ -12,6 +12,7 @@ const TimePickerWrapper = ({ input: {onChange, value}, meta: {error, touched} })
                 timeIntervals={15}
                 dateFormat="h:mm aa"
                 timeCaption="Time"
+                className="styled-input"
             />
             {touched && <span className="reservations__error">{error}</span>}
         </>

@@ -1,12 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {FieldArray, Form, reduxForm} from 'redux-form';
-import {Button, Col, Container, Row} from 'reactstrap';
+import {Button, Col, Row} from 'reactstrap';
 import _map from 'lodash/map';
 import ReactJson from 'react-json-view';
+import {Container} from "../../components/Main.styles";
 
-import {WEEK_DAYS} from '../common/constants';
-import {clearReservations, saveReservations,} from '../actions/machine';
+import {WEEK_DAYS} from '../../common/constants';
+import {clearReservations, saveReservations,} from '../../actions/machine';
 import SingleDayReservations from './SingleDayReservations';
 import './Reservations.scss';
 import moment from 'moment';
@@ -25,7 +26,6 @@ const validate = (values) => {
             let err = {};
 
             value.forEach(({start, end, user}) => {
-                {console.log(value)}
                 if (start === null) {
                     err.start = `${emptyErrorMsg}`
                 }
@@ -77,48 +77,46 @@ const validate = (values) => {
 };
 
 const Reservations = ({
-  clearReservations,
-  handleSubmit,
-  machine,
-  saveReservations}) => {
+                          clearReservations,
+                          handleSubmit,
+                          machine,
+                          saveReservations,
+                      }) => {
 
     return (
-        <Container className="reservations">
-            <Form onSubmit={handleSubmit(saveReservations)}>
-                <Row>
-                    <Col xs={12}>
-                        <h2>Reservations</h2>
-                        {_map(WEEK_DAYS, day => (
-                            <FieldArray
-                                key={`single-${day}`}
-                                component={SingleDayReservations}
-                                name={day}
-                            />
-                        ))}
-                        {/*<DropdownList*/}
-                        {/*    data={userss}*/}
-                        {/*    dataKey='id'*/}
-                        {/*    textField='name'*/}
-                        {/*    defaultValue={1}*/}
-                        {/*/>*/}
+        <Form onSubmit={handleSubmit(saveReservations)}>
+            <Row>
+                <Col xs={12}>
+                    <h1>Reservations</h1>
+                    <div className="main-container">
+                        <div className="header">
+                            <h4>All reservations</h4>
+                        </div>
+                    </div>
+                    {_map(WEEK_DAYS, day => (
+                        <FieldArray
+                            key={`single-${day}`}
+                            component={SingleDayReservations}
+                            name={day}
+                        />
+                    ))}
 
-                        <Button color="primary" type="submit">
-                            Save data
-                        </Button>
-                    </Col>
-                    <Col xs={12}>
-                        <ReactJson src={machine} name="machineStoreState"/>
-                        <Button
-                            onClick={clearReservations}
-                            color="warning"
-                            className="reservations__clear-btn"
-                        >
-                            Reset Data
-                        </Button>
-                    </Col>
-                </Row>
-            </Form>
-        </Container>
+                    <Button color="primary" type="submit">
+                        Save data
+                    </Button>
+                </Col>
+                <Col xs={12}>
+                    <ReactJson src={machine} name="machineStoreState"/>
+                    <Button
+                        onClick={clearReservations}
+                        color="warning"
+                        className="reservations__clear-btn"
+                    >
+                        Reset Data
+                    </Button>
+                </Col>
+            </Row>
+        </Form>
     );
 }
 

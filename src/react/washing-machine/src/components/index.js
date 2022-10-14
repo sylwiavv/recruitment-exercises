@@ -1,6 +1,6 @@
-import Reservations from "./Reservations";
-import {Navigation} from "./Navigation";
-import SignInForm from "./AddUserForm"
+import Reservations from "../pages/Reservations/Reservations";
+import {Navigation} from "./Navigation/Navigation";
+import AddUserForm from "../pages/Users/AddUserForm"
 import {MainLayout} from './MainLayout'
 
-export { Reservations, Navigation, SignInForm, MainLayout };
+export { Reservations, Navigation, AddUserForm, MainLayout };

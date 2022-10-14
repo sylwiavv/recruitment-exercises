@@ -1,5 +1,5 @@
 import React from "react";
-import {Navigation} from "./Navigation"
+import {Navigation} from "./Navigation/Navigation"
 import {Container} from "./Main.styles";
 
 export const MainLayout = ({ children }) => (
