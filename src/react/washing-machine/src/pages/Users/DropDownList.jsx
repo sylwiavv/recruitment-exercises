@@ -9,6 +9,7 @@ const DropDownList = ({input: {onChange, value}, meta: {error, touched}, users})
         <>
             <DropdownList
                 selected={value !== '' ? value : null}
+                value={value}
                 data={user}
                 onChange={onChange}
                 className="styled-input"
