@@ -8,7 +8,6 @@ import DropDownList from "../Users/DropDownList";
 
 import {InputWrapper, Label} from "../../assests/styles/forms/forms.styles"
 import {StyledButton} from "../../assests/styles/buttons/buttons.styles";
-import {Container} from "../../components/Main.styles";
 
 const SingleDayReservations = ({fields, meta: {error} }) => {
     return (
@@ -20,28 +19,19 @@ const SingleDayReservations = ({fields, meta: {error} }) => {
             <div className="entry">
                 {fields.map((name, index) => (
                     <>
-                    <div className="single-entry"
+                        <div className="single-entry"
                          key={`${name}-${index}`}>
                         <InputWrapper>
                             <Label htmlFor={`${name}.start`}>Start at:</Label>
-                            <Field
-                                name={`${name}.start`}
-                                component={TimePickerWrapper}
-                            />
+                            <Field name={`${name}.start`} component={TimePickerWrapper} />
                         </InputWrapper>
                         <InputWrapper>
                             <Label htmlFor={`${name}.end`}>End at:</Label>
-                            <Field
-                                name={`${name}.end`}
-                                component={TimePickerWrapper}
-                            />
+                            <Field name={`${name}.end`} component={TimePickerWrapper} />
                         </InputWrapper>
                         <InputWrapper>
                             <Label htmlFor={`${name}.user`}>Your name:</Label>
-                            <Field
-                                name={`${name}.user`}
-                                component={DropDownList}
-                            />
+                            <Field name={`${name}.user`} component={DropDownList} />
                         </InputWrapper>
                     </div>
                     <StyledButton isBig onClick={() => { fields.remove(index)}} color="danger" className="reservations__remove-btn">Remove</StyledButton>

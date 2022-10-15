@@ -4,7 +4,6 @@ import {FieldArray, Form, reduxForm} from 'redux-form';
 import {Button, Col, Row} from 'reactstrap';
 import _map from 'lodash/map';
 import ReactJson from 'react-json-view';
-import {Container} from "../../components/Main.styles";
 
 import {WEEK_DAYS} from '../../common/constants';
 import {clearReservations, saveReservations,} from '../../actions/machine';
@@ -20,26 +19,31 @@ const reservationConflict = 'Conflict between two reservations';
 const validate = (values) => {
     let errors = {};
 
-    Object.entries(values).forEach(([key, value]) => {
+    Object.entries(values).forEach(([ key, value ]) => {
         if (value !== []) {
-            errors[key] = []
-            let err = {};
 
-            value.forEach(({start, end, user}) => {
-                if (start === null) {
+            errors[key] = [];
+
+            value.forEach(({ start, end, user }) => {
+                let err = {};
+
+                console.log('err------')
+                console.log(err)
+                if (!start) {
                     err.start = `${emptyErrorMsg}`
                 }
-                if (end === null) {
+
+                if (!end) {
                     err.end = `${emptyErrorMsg}`
                 }
-                if (user === null) {
+                if (!user) {
                     err.user = `${emptyErrorMsg}`
                 }
                 if (!moment(end).isAfter(start) && end !== null) {
                     err.end = `${endTimeMsg}`
                 }
-                const reservationDurationHoursn = Number(moment(end).diff(moment(start), 'hours', true).toFixed(2));
-                if (reservationDurationHoursn > 2.50) {
+                const reservationDurationHours = Number(moment(end).diff(moment(start), 'hours', true).toFixed(2));
+                if (reservationDurationHours > 2.50) {
                     err.end = `${durationMsg}`
                 }
                 let actualReservation = {start, end};
@@ -73,16 +77,11 @@ const validate = (values) => {
             })
         }
     });
+    console.log(errors)
     return errors;
 };
 
-const Reservations = ({
-                          clearReservations,
-                          handleSubmit,
-                          machine,
-                          saveReservations,
-                      }) => {
-
+const Reservations = ({ clearReservations, handleSubmit, machine, saveReservations}) => {
     return (
         <Form onSubmit={handleSubmit(saveReservations)}>
             <Row>
