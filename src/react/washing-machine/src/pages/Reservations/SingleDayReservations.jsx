@@ -9,7 +9,7 @@ import DropDownList from "../Users/DropDownList";
 import {InputWrapper, Label} from "../../assests/styles/forms/forms.styles"
 import {StyledButton} from "../../assests/styles/buttons/buttons.styles";
 
-const SingleDayReservations = ({fields, meta: {error} }) => {
+const SingleDayReservations = ({fields, meta: {error}}) => {
     return (
         <div className="elo">
             <div className="header">
@@ -18,9 +18,8 @@ const SingleDayReservations = ({fields, meta: {error} }) => {
             </div>
             <div className="entry">
                 {fields.map((name, index) => (
-                    <>
-                        <div className="single-entry"
-                         key={`${name}-${index}`}>
+                    <div key={`${fields.name}--${index}`}>
+                        <div className="single-entry" key={`${name}-${index}`}>
                         <InputWrapper>
                             <Label htmlFor={`${name}.start`}>Start at:</Label>
                             <Field name={`${name}.start`} component={TimePickerWrapper} />
@@ -35,7 +34,7 @@ const SingleDayReservations = ({fields, meta: {error} }) => {
                         </InputWrapper>
                     </div>
                     <StyledButton isBig onClick={() => { fields.remove(index)}} color="danger" className="reservations__remove-btn">Remove</StyledButton>
-                    </>
+                    </div>
                 ))}
             </div>
             <div className="footer">
