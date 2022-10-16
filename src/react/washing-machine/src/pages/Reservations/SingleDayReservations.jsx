@@ -11,14 +11,13 @@ import {StyledButton} from "../../assests/styles/buttons/buttons.styles";
 
 const SingleDayReservations = ({fields, meta: {error}}) => {
     return (
-        <div className="elo">
+        <div className="wrapper">
             <div className="header">
                 <h5>{_capitalize(fields.name)}</h5>
                 <span className="reservations__error">{error}</span>
             </div>
             <div className="entry">
                 {fields.map((name, index) => (
-                    <div key={`${fields.name}--${index}`}>
                         <div className="single-entry" key={`${name}-${index}`}>
                         <InputWrapper>
                             <Label htmlFor={`${name}.start`}>Start at:</Label>
@@ -32,8 +31,7 @@ const SingleDayReservations = ({fields, meta: {error}}) => {
                             <Label htmlFor={`${name}.user`}>Your name:</Label>
                             <Field name={`${name}.user`} component={DropDownList} />
                         </InputWrapper>
-                    </div>
-                    <StyledButton isBig onClick={() => { fields.remove(index)}} color="danger" className="reservations__remove-btn">Remove</StyledButton>
+                    <StyledButton isBig onClick={() => { fields.remove(index)}}>Remove</StyledButton>
                     </div>
                 ))}
             </div>

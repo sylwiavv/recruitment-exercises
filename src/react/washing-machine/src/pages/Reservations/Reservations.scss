@@ -7,8 +7,6 @@
 
   &__remove-btn {
     margin-left: 1rem;
-    padding-top: 2px;
-    height: 28px;
   }
   &__error {
     color: red;
@@ -20,6 +18,7 @@
 .single-entry {
   display: flex;
   grid-gap: 8px;
+  margin-bottom: 48px;
 }
 
 .footer {
@@ -49,4 +48,8 @@
 
 .rw-state-focus {
   border: 2px solid rebeccapurple;
+}
+
+.wrapper {
+  margin-bottom: 32px;
 }

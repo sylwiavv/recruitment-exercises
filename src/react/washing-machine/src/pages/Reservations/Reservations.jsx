@@ -20,19 +20,14 @@ const validate = (values) => {
     let errors = {};
 
     Object.entries(values).forEach(([ key, value ]) => {
+        console.log(values);
         if (value !== []) {
-
             errors[key] = [];
-
             value.forEach(({ start, end, user }) => {
                 let err = {};
-
-                console.log('err------')
-                console.log(err)
                 if (!start) {
                     err.start = `${emptyErrorMsg}`
                 }
-
                 if (!end) {
                     err.end = `${emptyErrorMsg}`
                 }
@@ -77,7 +72,6 @@ const validate = (values) => {
             })
         }
     });
-    console.log(errors)
     return errors;
 };
 

@@ -3,8 +3,7 @@ import DropdownList from "react-widgets/DropdownList";
 import { connect } from "react-redux";
 
 const DropDownList = ({input: {onChange, value}, meta: {error, touched}, users}) => {
-    const user = users.users.map(user => user.userName)
-
+    const user = users.users.map(user => user.userName);
     return (
         <>
             <DropdownList

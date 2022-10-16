@@ -7,7 +7,7 @@ import {Button, Form, Input, ListGroup, ListGroupItem} from "reactstrap";
 import _map from "lodash/map";
 import {StyledButton} from "../../assests/styles/buttons/buttons.styles";
 import {InputWrapper, Label} from "../../assests/styles/forms/forms.styles";
-import _capitalize from "lodash/capitalize";
+import moment from "moment/moment";
 
 const renderInput = ({label, input, meta: { error, touched }} ) => (
     <>
@@ -16,18 +16,36 @@ const renderInput = ({label, input, meta: { error, touched }} ) => (
         {touched && <span className="reservations__error">{error}</span>}
     </>
 )
-//
-// const validate = values => {
-//     const errors = [];
-//     if (!values || values === '') { return 'This field is required'}
-//     return errors;
-// };
 
+const validate = (values) => {
+    let errors = {};
+    console.log(values);
+
+
+    // Object.entries(values).forEach(( key) => {
+    //     // console.log('key-----')
+    //     // console.log(roomNumber);
+    //     console.log(key);
+    // });
+
+    // values.forEach(({ roomNumber }) => {
+            //     let err = {};
+            //     if (typeof roomNumber !== 'number') {
+            //         err.roomNumber = `It is not a number}`
+            //     }
+            //     errors[key].push(err);
+            // })
+
+    return errors;
+};
+const number = value => value && isNaN(Number(value)) ? 'Must be a number' : undefined
+const required = value => value ? undefined : 'Required'
 
 const AddUserForm = ({ addUser, deleteUser, users, handleSubmit, clean, error, state, fields }) => {
 
     const submit = ({firstName, lastName, roomNumber}) => {
-        addUser({userName: firstName, userLastName: lastName, roomNumber: roomNumber})}
+        addUser({userName: firstName, userLastName: lastName, roomNumber: roomNumber})
+    }
 
     const handleRemoveUser = (id, users) => {
         deleteUser(users.users.filter((user) => user.id !==  id ))
@@ -83,7 +101,7 @@ export default connect(
 )(
     reduxForm({
         form: 'users',
-        fields: ['firstName', 'lastName', 'roomNumber'],
+        validate,
         enableReinitialize: true,
     })(AddUserForm),
 );

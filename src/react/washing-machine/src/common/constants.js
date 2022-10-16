@@ -5,9 +5,9 @@ export const WEEK_DAYS = [
   "thursday",
   "friday",
   "saturday",
-  "sunday"
+  "sunday",
 ];
 
 export const USERS_ATR = [
-  "first name", "last name", "room number"
+  "firstName", "lastName", "roomNumber"
 ];
