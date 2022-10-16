@@ -16,7 +16,10 @@ export const Navigation = () => {
     return (
         <Navbar>
             {navigation
-                .map(({name, href, icon}) => (<StyledLink key={name} to={href}>{name}</StyledLink>))
+                .map(({name, href, icon}) => (
+                    <StyledLink end={name === "Reservations" ? 'end' : ''}
+                        key={name} to={href}>{name}</StyledLink>
+                ))
             }
         </Navbar>
     )

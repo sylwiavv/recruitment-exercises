@@ -15,6 +15,10 @@ export const StyledLink = styled(NavLink)`
   text-align: right;
   margin: 15px 20px 15px auto;
   position: relative;
+  
+  &:hover {
+    text-decoration: none;
+  }
 
   &.active {
     color: ${({theme}) => theme.colors.darkGreen};
