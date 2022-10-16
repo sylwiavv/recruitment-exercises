@@ -7,7 +7,9 @@ import {Button, Form, Input, ListGroup, ListGroupItem} from "reactstrap";
 import _map from "lodash/map";
 import {StyledButton} from "../../assests/styles/buttons/buttons.styles";
 import {InputWrapper, Label} from "../../assests/styles/forms/forms.styles";
-import moment from "moment/moment";
+
+const emptyErrorMsg = `Can't not be empty`;
+
 
 const renderInput = ({label, input, meta: { error, touched }} ) => (
     <>
@@ -19,25 +21,19 @@ const renderInput = ({label, input, meta: { error, touched }} ) => (
 
 const validate = (values) => {
     let errors = {};
-    console.log(values);
-
-
-    // Object.entries(values).forEach(( key) => {
-    //     // console.log('key-----')
-    //     // console.log(roomNumber);
-    //     console.log(key);
-    // });
-
-    // values.forEach(({ roomNumber }) => {
-            //     let err = {};
-            //     if (typeof roomNumber !== 'number') {
-            //         err.roomNumber = `It is not a number}`
-            //     }
-            //     errors[key].push(err);
-            // })
+     if (!values.firstName) {
+            errors.firstName = `${emptyErrorMsg}`
+        }
+        if (!values.lastName) {
+            errors.lastName = `${emptyErrorMsg}`
+        }
+        if (!values.roomNumber) {
+            errors.roomNumber = `${emptyErrorMsg}`
+        }
 
     return errors;
 };
+
 const number = value => value && isNaN(Number(value)) ? 'Must be a number' : undefined
 const required = value => value ? undefined : 'Required'
 

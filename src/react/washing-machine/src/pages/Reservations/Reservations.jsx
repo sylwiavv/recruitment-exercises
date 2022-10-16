@@ -20,7 +20,6 @@ const validate = (values) => {
     let errors = {};
 
     Object.entries(values).forEach(([ key, value ]) => {
-        console.log(values);
         if (value !== []) {
             errors[key] = [];
             value.forEach(({ start, end, user }) => {
@@ -72,6 +71,7 @@ const validate = (values) => {
             })
         }
     });
+    console.log(errors);
     return errors;
 };
 
@@ -131,6 +131,5 @@ export default connect(
     reduxForm({
         form: 'reservations',
         validate,
-        enableReinitialize: true,
     })(Reservations),
 );

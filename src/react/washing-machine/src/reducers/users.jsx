@@ -22,19 +22,6 @@ const initialState = {
     users: [],
 };
 
-// const defaultState = _reduce(
-//     USERS_ATR,
-//     (users, entry) => {
-//         users[entry] = [{
-//             id: uuid(),
-//             userName: 'Initial',
-//             userLastName: 'User',
-//         },];
-//         return users;
-//     },
-//     {}
-// );
-
 export const users = (state = initialState, action) => {
     switch (action.type) {
         case "ADD_USER":
