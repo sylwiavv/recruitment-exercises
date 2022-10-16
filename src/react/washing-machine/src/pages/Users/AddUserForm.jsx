@@ -9,6 +9,7 @@ import {StyledButton} from "../../assests/styles/buttons/buttons.styles";
 import {InputWrapper, Label} from "../../assests/styles/forms/forms.styles";
 
 const emptyErrorMsg = `Can't not be empty`;
+const notNumberErrorMsg = `Must be a number`;
 
 
 const renderInput = ({label, input, meta: { error, touched }} ) => (
@@ -21,21 +22,21 @@ const renderInput = ({label, input, meta: { error, touched }} ) => (
 
 const validate = (values) => {
     let errors = {};
-     if (!values.firstName) {
-            errors.firstName = `${emptyErrorMsg}`
-        }
-        if (!values.lastName) {
-            errors.lastName = `${emptyErrorMsg}`
-        }
-        if (!values.roomNumber) {
-            errors.roomNumber = `${emptyErrorMsg}`
-        }
+
+    if (!values.firstName) {
+        errors.firstName = `${emptyErrorMsg}`
+    }
+    if (!values.lastName) {
+        errors.lastName = `${emptyErrorMsg}`
+    }
+    if (!values.roomNumber) {
+        errors.roomNumber = `${emptyErrorMsg}`
+    } else if (isNaN(values.roomNumber)) {
+        errors.roomNumber = `${notNumberErrorMsg}`
+    }
 
     return errors;
 };
-
-const number = value => value && isNaN(Number(value)) ? 'Must be a number' : undefined
-const required = value => value ? undefined : 'Required'
 
 const AddUserForm = ({ addUser, deleteUser, users, handleSubmit, clean, error, state, fields }) => {
 
