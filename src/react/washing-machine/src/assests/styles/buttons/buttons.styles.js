@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { lighten } from 'polished';
 
 export const StyledButton = styled.button`
-  margin-top: ${({ notMarginTop, theme }) => (notMarginTop ? 0 : '16px')};
+  margin-top: ${({ notMarginTop, theme }) => (notMarginTop ? 0 : '24px')};
   color: ${({ colorIsGray, theme }) => (colorIsGray ? theme.colors.darkGray : '#fff')};
   padding: 8px 24px;
 
@@ -27,5 +27,4 @@ export const StyledButton = styled.button`
       return lighten(0.1, theme.colors.buttonPurpleAction);
     }};  
   }
-
 `;

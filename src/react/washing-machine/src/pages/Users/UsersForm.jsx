@@ -1,13 +1,13 @@
 import React from 'react'
 import {addUser, deleteUser, clean} from "../../actions/users";
 import {connect} from 'react-redux';
-import {Field, reduxForm} from "redux-form";
+import {Field, reduxForm, reset} from "redux-form";
 import ReactJson from "react-json-view";
 import {Form, Input} from "reactstrap";
 import _map from "lodash/map";
 import {StyledButton} from "../../assests/styles/buttons/buttons.styles";
 import {ErrorWrapper, InputWrapper, Label} from "../../assests/styles/forms/forms.styles";
-import {UserData, UserItem, UsersWrapper} from "./UsersList.styles";
+import {UserData, UserItem, UsersWrapper} from "./Users.styles";
 import {Footer, Header, MainContainer, SingleEntry} from "../../assests/styles/layout/layout.styles";
 import {emptyErrorMsg, notNumberErrorMsg} from "../../common/validations_messages"
 
@@ -35,12 +35,12 @@ const renderInput = ({label, input, meta: { error, touched }} ) => (
         <Input {...input} type="text" error={error}  className="styled-input"/>
         {touched && <ErrorWrapper>{error}</ErrorWrapper>}
     </>
-)
+);
 
-const UsersForm = ({ users, handleSubmit, clean }) => {
+const UsersForm = ({ addUser, deleteUser, users, handleSubmit, clean}) => {
     const submit = ({firstName, lastName, roomNumber}) => {
         addUser({userName: firstName, userLastName: lastName, roomNumber: roomNumber})
-        console.log('submit')
+        // reset('users');
     }
 
     const handleRemoveUser = (id, users) => {
@@ -51,7 +51,7 @@ const UsersForm = ({ users, handleSubmit, clean }) => {
         <MainContainer>
             <h1>Users</h1>
             <MainContainer>
-                <div className="header"><h4>Users list</h4></div>
+                <Header><h4>Users list</h4></Header>
                 {users.users.length === 0 ? <p>Users list is empty</p> :
                     <UsersWrapper>
                         {_map(users.users, ({id, userName, userLastName, roomNumber}) => (
@@ -66,9 +66,7 @@ const UsersForm = ({ users, handleSubmit, clean }) => {
                 }
             </MainContainer>
             <MainContainer isBigMarginBottom>
-                <Header>
-                    <h4>Add User</h4>
-                </Header>
+                <Header><h4>Add User</h4></Header>
                 <Form onSubmit={handleSubmit(values => submit(values))}>
                 <SingleEntry>
                     <InputWrapper><Field name="firstName" label="First Name" component={renderInput} /></InputWrapper>
@@ -80,9 +78,8 @@ const UsersForm = ({ users, handleSubmit, clean }) => {
                 </Footer>
                 </Form>
             </MainContainer>
-
-            <ReactJson src={users} name="usersStoreState"/>
-            <StyledButton background={"red"} onClick={clean} className="reservations__clear-btn">Reset All Users</StyledButton>
+            {/*<ReactJson src={users} name="usersStoreState"/>*/}
+            {/*<StyledButton background={"red"} onClick={clean} className="reservations__clear-btn">Reset All Users</StyledButton>*/}
         </MainContainer>
         )
 }
@@ -97,6 +94,9 @@ const mapDispatchToProps = {
     clean,
 };
 
+const afterSubmit = (result, dispatch) =>
+    dispatch(reset('users'));
+
 export default connect(
     mapStateToProps,
     mapDispatchToProps,
@@ -104,6 +104,6 @@ export default connect(
     reduxForm({
         form: 'users',
         validate,
-        enableReinitialize: true,
+        onSubmitSuccess: afterSubmit,
     })(UsersForm),
 );

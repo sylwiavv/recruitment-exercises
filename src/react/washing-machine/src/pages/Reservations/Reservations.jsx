@@ -96,10 +96,10 @@ const Reservations = ({clearReservations, handleSubmit, machine, saveReservation
                         </Footer>
                     </MainContainer>
                 </Col>
-                <Col xs={12}>
-                    <ReactJson src={machine} name="machineStoreState"/>
-                    <StyledButton background={"red"} onClick={clearReservations}>Reset Data</StyledButton>
-                </Col>
+                {/*<Col xs={12}>*/}
+                {/*    <ReactJson src={machine} name="machineStoreState"/>*/}
+                {/*    <StyledButton background={"red"} onClick={clearReservations}>Reset Data</StyledButton>*/}
+                {/*</Col>*/}
             </Row>
         </Form>
     );
