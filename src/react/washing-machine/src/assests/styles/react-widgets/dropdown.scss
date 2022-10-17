@@ -1,0 +1,13 @@
+.rw-widget-input {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.rw-widget-picker,
+.rw-state-focus .rw-widget-picker {
+  border: none;
+}
+
+.rw-state-focus .rw-widget-picker.rw-widget-input {
+  box-shadow: none;
+}

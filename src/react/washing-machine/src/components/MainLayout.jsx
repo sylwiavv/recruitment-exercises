@@ -1,10 +1,10 @@
 import React from "react";
 import {Navigation} from "./Navigation/Navigation"
-import {Container} from "./Main.styles";
+import {Container} from "../assests/styles/layout/layout.styles";
 
 export const MainLayout = ({ children }) => (
     <Container>
         <Navigation />
-        <div>{children}</div>
+        {children}
     </Container>
 )

@@ -1,28 +1,26 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {FieldArray, Form, reduxForm} from 'redux-form';
-import {Button, Col, Row} from 'reactstrap';
+import {Col, Row} from 'reactstrap';
 import _map from 'lodash/map';
 import ReactJson from 'react-json-view';
 
 import {WEEK_DAYS} from '../../common/constants';
 import {clearReservations, saveReservations,} from '../../actions/machine';
 import SingleDayReservations from './SingleDayReservations';
-import './Reservations.scss';
+import '../../assests/styles/react-widgets/dropdown.scss';
 import moment from 'moment';
-
-const emptyErrorMsg = `Can't not be empty`;
-const endTimeMsg = `End time should be after start time`;
-const durationMsg = `Reservation too long`;
-const reservationConflict = 'Conflict between two reservations';
+import {StyledButton} from "../../assests/styles/buttons/buttons.styles";
+import {Footer, Header, MainContainer} from "../../assests/styles/layout/layout.styles";
+import {emptyErrorMsg, endTimeMsg, durationMsg, reservationConflictMsg} from "../../common/validations_messages"
 
 const validate = (values) => {
     let errors = {};
 
-    Object.entries(values).forEach(([ key, value ]) => {
+    Object.entries(values).forEach(([key, value]) => {
         if (value !== []) {
             errors[key] = [];
-            value.forEach(({ start, end, user }) => {
+            value.forEach(({start, end, user}) => {
                 let err = {};
                 if (!start) {
                     err.start = `${emptyErrorMsg}`
@@ -65,7 +63,7 @@ const validate = (values) => {
                 let collide2 = conflict(actualReservation, value)
                 // console.log("COLLIDE " + collide2)
                 if (collide2) {
-                    errors[key]._error = `${reservationConflict}`
+                    errors[key]._error = `${reservationConflictMsg}`
                 }
                 errors[key].push(err);
             })
@@ -75,38 +73,32 @@ const validate = (values) => {
     return errors;
 };
 
-const Reservations = ({ clearReservations, handleSubmit, machine, saveReservations}) => {
+const Reservations = ({clearReservations, handleSubmit, machine, saveReservations}) => {
     return (
         <Form onSubmit={handleSubmit(saveReservations)}>
             <Row>
                 <Col xs={12}>
                     <h1>Reservations</h1>
-                    <div className="main-container">
-                        <div className="header">
+                    <MainContainer isBigMarginBottom>
+                        <Header>
                             <h4>All reservations</h4>
-                        </div>
-                    </div>
-                    {_map(WEEK_DAYS, day => (
-                        <FieldArray
-                            key={`single-${day}`}
-                            component={SingleDayReservations}
-                            name={day}
-                        />
-                    ))}
+                        </Header>
+                        {_map(WEEK_DAYS, day => (
+                            <FieldArray
+                                key={`single-${day}`}
+                                component={SingleDayReservations}
+                                name={day}
+                            />
+                        ))}
 
-                    <Button color="primary" type="submit">
-                        Save data
-                    </Button>
+                        <Footer isMarginVertical>
+                            <StyledButton background={'green'} type="submit">Save all reservations</StyledButton>
+                        </Footer>
+                    </MainContainer>
                 </Col>
                 <Col xs={12}>
                     <ReactJson src={machine} name="machineStoreState"/>
-                    <Button
-                        onClick={clearReservations}
-                        color="warning"
-                        className="reservations__clear-btn"
-                    >
-                        Reset Data
-                    </Button>
+                    <StyledButton background={"red"} onClick={clearReservations}>Reset Data</StyledButton>
                 </Col>
             </Row>
         </Form>

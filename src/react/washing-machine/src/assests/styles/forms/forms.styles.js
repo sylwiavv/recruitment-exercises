@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 
 export const Label = styled.label`
-  font-family: Montserrat, sans-serif;
   font-size: 14px;
   font-weight: 600;
   margin-bottom: 4px;
-  color: #7d838a;
+  color: ${({ theme }) => theme.colors.fontColorLighter};
 `;
 
 export const InputWrapper = styled.div`
@@ -17,7 +16,8 @@ export const InputWrapper = styled.div`
   .styled-input {
     display: flex;
     align-items: center;
-    border: 1px solid #cbcbcb;
+    border: 1px solid ${({ theme }) => theme.colors.borderColorLight};
+    background-color: transparent;
     border-radius: 4px;
     padding: 16px 8px;
     width: 100%;
@@ -33,4 +33,10 @@ export const InputWrapper = styled.div`
       transition: border, .3s;
     }
   }
+`
+
+export const ErrorWrapper = styled.span`
+  color: ${({ theme }) => theme.colors.error};
+  font-size: 14px;
+  margin-top: 4px;
 `

@@ -10,7 +10,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {GlobalStyle} from "./assests/styles/GlobalStyle";
 import {ThemeProvider} from "styled-components";
 import {theme} from "./assests/styles/theme";
-import AddUserForm from "./pages/Users/AddUserForm";
+import UsersForm from "./pages/Users/UsersForm";
 
 const {store, persistor} = createStore();
 
@@ -23,7 +23,7 @@ const App = () => (
                     <MainLayout>
                         <Routes>
                             <Route path="/" element={<Reservations/>}/>
-                            <Route path="users" element={<AddUserForm/>}/>
+                            <Route path="users" element={<UsersForm/>}/>
                         </Routes>
                     </MainLayout>
                 </BrowserRouter>

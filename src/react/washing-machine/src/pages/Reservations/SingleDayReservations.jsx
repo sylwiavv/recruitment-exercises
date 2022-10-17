@@ -1,24 +1,25 @@
 import React from 'react';
-import {Button} from 'reactstrap';
 import {Field} from 'redux-form';
 import _capitalize from 'lodash/capitalize';
 import TimePickerWrapper from './TimePickerWrapper';
 import "react-widgets/styles.css";
 import DropDownList from "../Users/DropDownList";
 
-import {InputWrapper, Label} from "../../assests/styles/forms/forms.styles"
+import {ErrorWrapper, InputWrapper, Label} from "../../assests/styles/forms/forms.styles"
 import {StyledButton} from "../../assests/styles/buttons/buttons.styles";
+import {Entry, Footer, Header, MainContainer, SingleEntry} from "../../assests/styles/layout/layout.styles";
 
 const SingleDayReservations = ({fields, meta: {error}}) => {
     return (
-        <div className="wrapper">
-            <div className="header">
+        <MainContainer>
+            <Header>
                 <h5>{_capitalize(fields.name)}</h5>
-                <span className="reservations__error">{error}</span>
-            </div>
-            <div className="entry">
+                <ErrorWrapper>{error}</ErrorWrapper>
+            </Header>
+            {fields.length === 0 ? <p>There are not reservations.</p> : <p>Reservations:</p>}
+            <Entry className={fields.length === 0 ? 'empty-entry' : 'entry'}>
                 {fields.map((name, index) => (
-                        <div className="single-entry" key={`${name}-${index}`}>
+                        <SingleEntry key={`${name}-${index}`}>
                         <InputWrapper>
                             <Label htmlFor={`${name}.start`}>Start at:</Label>
                             <Field name={`${name}.start`} component={TimePickerWrapper} />
@@ -31,19 +32,19 @@ const SingleDayReservations = ({fields, meta: {error}}) => {
                             <Label htmlFor={`${name}.user`}>Your name:</Label>
                             <Field name={`${name}.user`} component={DropDownList} />
                         </InputWrapper>
-                    <StyledButton isBig onClick={() => { fields.remove(index)}}>Remove</StyledButton>
-                    </div>
+                    <StyledButton background={"gray"} colorIsGray onClick={() => { fields.remove(index)}}>Remove</StyledButton>
+                    </SingleEntry>
                 ))}
-            </div>
-            <div className="footer">
-                <Button
+            </Entry>
+            <Footer>
+                <StyledButton
                     onClick={() => {fields.push({start: null, end: null, user: null})}}
                     color="warning"
                     className="reservations__clear-btn">
                     + Add Entry
-                </Button>
-            </div>
-        </div>
+                </StyledButton>
+            </Footer>
+        </MainContainer>
     )
 };
 

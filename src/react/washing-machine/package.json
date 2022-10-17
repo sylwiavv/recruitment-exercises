@@ -20,6 +20,7 @@
     "redux-form": "^8.1.0",
     "redux-persist": "^5.10.0",
     "sass": "^1.55.0",
+    "polished": "^4.2.2",
     "styled-components": "^5.3.6",
     "uuid": "^9.0.0"
   },

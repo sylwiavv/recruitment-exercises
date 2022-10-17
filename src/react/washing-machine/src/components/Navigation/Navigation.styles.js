@@ -18,10 +18,11 @@ export const StyledLink = styled(NavLink)`
   
   &:hover {
     text-decoration: none;
+    color: ${({theme}) => theme.colors.lightGreen};
   }
 
   &.active {
-    color: ${({theme}) => theme.colors.darkGreen};
+    color: ${({theme}) => theme.colors.lightGreen};
     &:after {
       opacity: 1;
     }
@@ -37,6 +38,6 @@ export const StyledLink = styled(NavLink)`
     right: 0;
     bottom: -8px;
     transform: translateY(-50%);
-    background-color: ${({theme}) => theme.colors.darkGreen};
+    background-color: ${({theme}) => theme.colors.lightGreen};
   }
 `;

@@ -1,6 +1,7 @@
 import React from "react";
 import DropdownList from "react-widgets/DropdownList";
 import { connect } from "react-redux";
+import {ErrorWrapper} from "../../assests/styles/forms/forms.styles";
 
 const DropDownList = ({input: {onChange, value}, meta: {error, touched}, users}) => {
     const user = users.users.map(user => user.userName);
@@ -13,7 +14,7 @@ const DropDownList = ({input: {onChange, value}, meta: {error, touched}, users})
                 onChange={onChange}
                 className="styled-input"
             />
-            {touched && <span className="reservations__error">{error}</span>}
+            {touched && <ErrorWrapper>{error}</ErrorWrapper>}
         </>
     );
 };

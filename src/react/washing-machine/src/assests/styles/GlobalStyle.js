@@ -11,6 +11,11 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Montserrat', sans-serif;  
   }
   
+  body {
+    background: ${({ theme }) => theme.colors.bgColor};
+    color: ${({ theme }) => theme.colors.fontColor};
+  }
+  
   //input,
   //.rw-widget-input{
   //  padding: 5px 8px;

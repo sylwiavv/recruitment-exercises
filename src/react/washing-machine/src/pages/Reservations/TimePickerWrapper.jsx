@@ -1,5 +1,6 @@
 import React from 'react';
 import DatePicker from 'react-datepicker';
+import {ErrorWrapper} from "../../assests/styles/forms/forms.styles";
 
 const TimePickerWrapper = ({ input: {onChange, value}, meta: {error, touched} }) => {
     return (
@@ -14,7 +15,7 @@ const TimePickerWrapper = ({ input: {onChange, value}, meta: {error, touched} })
                 timeCaption="Time"
                 className="styled-input"
             />
-            {touched && <span className="reservations__error">{error}</span>}
+            {touched && <ErrorWrapper>{error}</ErrorWrapper>}
         </>
     );
 };
