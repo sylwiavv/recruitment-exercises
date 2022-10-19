@@ -1,18 +1,24 @@
 .inline_editing {
-  background: $main-inline-editing-bg-color;
+  border: 4px solid $main-inline-editing-bg-color;
   padding: 16px;
-  border-radius: 2px;
-  border-bottom-right-radius: 60px;
-  border-top-left-radius: 60px;
+  border-radius: 4px;
 
   .artificial-input {
-    background-color: transparent;
-    border: 0;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    background-color: $main-bg-color;
     padding: 8px;
+    height: 48px;
+    max-width: 40%;
+    border: 1px solid lightgray;
+    transition: border, .3s;
 
+    &:focus,
     &:hover {
-      background-color: $main-bg-color;
+      border: 2px solid #0b7aff;
       cursor: pointer;
+      outline: none;
     }
   }
 }
