@@ -5,8 +5,8 @@
   "main": ".index.js",
   "scripts": {
     "compile-ts": "node_modules/.bin/tsc --watch",
-    "scss": "node_modules/.bin/node-sass js/microblog -o microblog/assets/css",
-    "scss-watch": "node_modules/.bin/node-sass --watch microblog/assets/scss/main.scss assets/icons -o dist/js/assets/css",
+    "scss": "node_modules/.bin/node-sass js/microblog -o assets/css",
+    "scss-watch": "node_modules/.bin/node-sass --watch assets/scss/main.scss assets/icons -o dist/js/assets/css",
     "prettier:fix": "node_modules/.bin/prettier --write \\\\\\\"../**/*.ts*(x)\\\\\\\"",
     "lint": "node_modules/.bin/eslint \\\\\\\"src/**/*.js*(x)\\\\\\\" --max-warnings=0",
     "start": "node_modules/.bin/webpack serve --mode development --config webpack.config.js",

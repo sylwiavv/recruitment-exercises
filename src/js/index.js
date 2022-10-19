@@ -2,6 +2,7 @@
 import "./microblog/index"
 import "./searchbox/index"
 import "./konami_code/index"
+import "./inline_editing/index"
 
 // Styles
-import "./microblog/assets/scss/main.scss";
+import "./assets/scss/main.scss";

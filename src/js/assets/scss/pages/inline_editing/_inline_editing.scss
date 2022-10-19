@@ -1,0 +1,18 @@
+.inline_editing {
+  background: $main-inline-editing-bg-color;
+  padding: 16px;
+  border-radius: 2px;
+  border-bottom-right-radius: 60px;
+  border-top-left-radius: 60px;
+
+  .artificial-input {
+    background-color: transparent;
+    border: 0;
+    padding: 8px;
+
+    &:hover {
+      background-color: $main-bg-color;
+      cursor: pointer;
+    }
+  }
+}
