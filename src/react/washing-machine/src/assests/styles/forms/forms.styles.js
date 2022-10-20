@@ -27,7 +27,7 @@ export const InputWrapper = styled.div`
     &:focus,
     &.rw-open,
     &.react-datepicker-ignore-onclickoutside {
-      border: 2px solid #298ffd;
+      border: 2px solid #007bff;
       box-shadow: none;
       outline: none;
       transition: border, .3s;
