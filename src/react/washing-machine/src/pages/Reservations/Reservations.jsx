@@ -43,9 +43,11 @@ const validate = (values) => {
                     let notCollide = value.every((val) => {
                         collide = (moment(val.start).isBetween(actualReservation.start, actualReservation.end) ||
                             moment(val.end).isBetween(actualReservation.start, actualReservation.end))
+                        // if collision happens we need to break the loop so we return negated value of the `collide` variable.
                         return !collide
                     });
 
+                    // if the loop breaks (false is returned) it means the collision happened so we need to negate the returned value
                     return !notCollide;
                 }
                 let isCollide = conflict(actualReservation, value);
