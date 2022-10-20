@@ -11,14 +11,9 @@ export const UserItem = styled.li`
   display: flex;
   align-items: center;
   border-radius: 4px;
-  //box-shadow: 0 1px 6px 2px #121e4117;
   background-color: ${({ theme }) => theme.colors.white};
   padding: 16px 16px 16px 24px;
   width: 100%;
-  
-  //&:nth-child(even) {
-  //  background-color: #61dafb;
-  //}
   
   &:not(:last-child) {
     margin-bottom: 8px;
@@ -45,7 +40,6 @@ export const UserData = styled.div`
   }
   
   span {
-    // color: ${({ theme }) => ( theme.colors.fontColorLighter )};
     font-size: 16px;
     font-weight: 600;
   }

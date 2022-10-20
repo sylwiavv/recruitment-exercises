@@ -2,7 +2,6 @@ import React from 'react'
 import {addUser, deleteUser, clean} from "../../actions/users";
 import {connect} from 'react-redux';
 import {Field, reduxForm, reset} from "redux-form";
-import ReactJson from "react-json-view";
 import {Form, Input} from "reactstrap";
 import _map from "lodash/map";
 import {StyledButton} from "../../assests/styles/buttons/buttons.styles";
@@ -40,7 +39,6 @@ const renderInput = ({label, input, meta: { error, touched }} ) => (
 const UsersForm = ({ addUser, deleteUser, users, handleSubmit, clean}) => {
     const submit = ({firstName, lastName, roomNumber}) => {
         addUser({userName: firstName, userLastName: lastName, roomNumber: roomNumber})
-        // reset('users');
     }
 
     const handleRemoveUser = (id, users) => {
@@ -78,8 +76,6 @@ const UsersForm = ({ addUser, deleteUser, users, handleSubmit, clean}) => {
                 </Footer>
                 </Form>
             </MainContainer>
-            {/*<ReactJson src={users} name="usersStoreState"/>*/}
-            {/*<StyledButton background={"red"} onClick={clean} className="reservations__clear-btn">Reset All Users</StyledButton>*/}
         </MainContainer>
         )
 }

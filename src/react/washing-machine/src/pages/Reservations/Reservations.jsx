@@ -1,9 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {FieldArray, Form, reduxForm} from 'redux-form';
-import {Col, Row} from 'reactstrap';
+import {Button, Col, Row} from 'reactstrap';
 import _map from 'lodash/map';
-import ReactJson from 'react-json-view';
 
 import {WEEK_DAYS} from '../../common/constants';
 import {clearReservations, saveReservations,} from '../../actions/machine';
@@ -13,6 +12,7 @@ import moment from 'moment';
 import {StyledButton} from "../../assests/styles/buttons/buttons.styles";
 import {Footer, Header, MainContainer} from "../../assests/styles/layout/layout.styles";
 import {emptyErrorMsg, endTimeMsg, durationMsg, reservationConflictMsg} from "../../common/validations_messages"
+import ReactJson from "react-json-view";
 
 const validate = (values) => {
     let errors = {};
@@ -44,36 +44,23 @@ const validate = (values) => {
                     let notCollide = value.every((val) => {
                         collide = (moment(val.start).isBetween(actualReservation.start, actualReservation.end) ||
                             moment(val.end).isBetween(actualReservation.start, actualReservation.end))
-                        // console.log("START")
-                        // console.log('value.length ' + value.length > 1 );
-                        // console.log(moment(val.start).isBetween(actualReservation.start, actualReservation.end))
-                        // console.log(val.start, actualReservation.start, actualReservation.end)
-                        // console.log("END")
-                        // console.log(val.end, actualReservation.start, actualReservation.end)
-                        // console.log(moment(val.end).isBetween(actualReservation.start, actualReservation.end))
-                        // console.log("_____________");
-                        //
-                        // console.log('colide z funkcji loop ' + collide)
                         return !collide
                     });
-                    // console.log('colide z funkcji ' + collide)
 
                     return !notCollide;
                 }
-                let collide2 = conflict(actualReservation, value)
-                // console.log("COLLIDE " + collide2)
-                if (collide2) {
+                let isCollide = conflict(actualReservation, value);
+                if (isCollide) {
                     errors[key]._error = `${reservationConflictMsg}`
                 }
                 errors[key].push(err);
             })
         }
     });
-    console.log(errors);
     return errors;
 };
 
-const Reservations = ({clearReservations, handleSubmit, machine, saveReservations}) => {
+const Reservations = ({handleSubmit, saveReservations, machine, clearReservations}) => {
     return (
         <Form onSubmit={handleSubmit(saveReservations)}>
             <Row>
@@ -96,10 +83,16 @@ const Reservations = ({clearReservations, handleSubmit, machine, saveReservation
                         </Footer>
                     </MainContainer>
                 </Col>
-                {/*<Col xs={12}>*/}
-                {/*    <ReactJson src={machine} name="machineStoreState"/>*/}
-                {/*    <StyledButton background={"red"} onClick={clearReservations}>Reset Data</StyledButton>*/}
-                {/*</Col>*/}
+                <Col xs={4}>
+                    <ReactJson src={machine} name="machineStoreState" />
+                    <Button
+                        onClick={clearReservations}
+                        color="warning"
+                        className="reservations__clear-btn"
+                    >
+                        Reset Data
+                    </Button>
+                </Col>
             </Row>
         </Form>
     );
