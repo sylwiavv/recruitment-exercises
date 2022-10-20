@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/recruitment-exercises.iml" filepath="$PROJECT_DIR$/.idea/recruitment-exercises.iml" />
       <module fileurl="file://$PROJECT_DIR$/../typescript/.idea/typescript.iml" filepath="$PROJECT_DIR$/../typescript/.idea/typescript.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../washing-machine/.idea/washing-machine.iml" filepath="$PROJECT_DIR$/../washing-machine/.idea/washing-machine.iml" />
       <module fileurl="file://$USER_HOME$/Downloads/workplace-organizer/.idea/workplace-organizer.iml" filepath="$USER_HOME$/Downloads/workplace-organizer/.idea/workplace-organizer.iml" />
     </modules>
   </component>

@@ -13,7 +13,7 @@ body.addEventListener('click', (e) => {
 });
 
 artificialInput.addEventListener('keydown', (e) => {
-    if (e.keyCode === 27) {
+    if (e.keyCode === 27 || e.keyCode === 13) {
         artificialInput.contentEditable = 'false';
     }
 });

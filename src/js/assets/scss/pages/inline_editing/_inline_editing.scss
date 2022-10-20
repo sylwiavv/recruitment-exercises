@@ -11,7 +11,7 @@
     padding: 8px;
     height: 48px;
     max-width: 40%;
-    border: 1px solid lightgray;
+    border: 2px solid $main-bg-color;
     transition: border, .3s;
 
     &:focus,

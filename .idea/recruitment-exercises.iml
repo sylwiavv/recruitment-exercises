@@ -6,5 +6,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="typescript" />
     <orderEntry type="module" module-name="workplace-organizer" />
+    <orderEntry type="module" module-name="washing-machine" />
   </component>
 </module>

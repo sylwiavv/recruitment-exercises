@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {FieldArray, Form, reduxForm} from 'redux-form';
-import {Button, Col, Row} from 'reactstrap';
+import {Col, Row} from 'reactstrap';
 import _map from 'lodash/map';
 
 import {WEEK_DAYS} from '../../common/constants';
@@ -11,8 +11,7 @@ import '../../assests/styles/react-widgets/dropdown.scss';
 import moment from 'moment';
 import {StyledButton} from "../../assests/styles/buttons/buttons.styles";
 import {Footer, Header, MainContainer} from "../../assests/styles/layout/layout.styles";
-import {emptyErrorMsg, endTimeMsg, durationMsg, reservationConflictMsg} from "../../common/validations_messages"
-import ReactJson from "react-json-view";
+import {durationMsg, emptyErrorMsg, endTimeMsg, reservationConflictMsg} from "../../common/validations_messages"
 
 const validate = (values) => {
     let errors = {};
@@ -82,16 +81,6 @@ const Reservations = ({handleSubmit, saveReservations, machine, clearReservation
                             <StyledButton background={'green'} type="submit">Save all reservations</StyledButton>
                         </Footer>
                     </MainContainer>
-                </Col>
-                <Col xs={4}>
-                    <ReactJson src={machine} name="machineStoreState" />
-                    <Button
-                        onClick={clearReservations}
-                        color="warning"
-                        className="reservations__clear-btn"
-                    >
-                        Reset Data
-                    </Button>
                 </Col>
             </Row>
         </Form>
