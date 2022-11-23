@@ -17,7 +17,7 @@ body {
   background-color: $main-bg-color;
 
   &.active {
-    overflow-y: hidden;
+    overflow: hidden;
   }
 
   &.active:after {
