@@ -33,7 +33,7 @@ addArticle.addEventListener('click', (e: Event) => {
   e.preventDefault();
 
   if (getTitleInput.value && getContentInput.value) {
-    addNewArticle(new Article(titleValue, contentValue, 0, 0));
+    addNewArticle(new Article(getTitleInput.value, getContentInput.value, 0, 0));
     renderArticles(updateLikes);
     closeModal();
   } else {
